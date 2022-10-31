@@ -6,3 +6,4 @@ Layla was here (part2)
 Flavyne was here 
 x = ("Hello Mr.Bills")
 print(x)
+Hey, this is William, here's my two cents.
