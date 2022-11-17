@@ -30,10 +30,10 @@ class Dressup:
         pass
     #stores owned clothes
     
-    def catalogue():
+    def catalogue(file):
         """
-        print csv
-        pass
+        file (csv): A CSV file in UTF-8 encoding with columns "Clothes" (str), "Cost" (int), and "Cool Factor" (float). 
+        The first row of the file contains column headers; each subsequent row describes a single piece of clothes.
         """
         
         """lambda function, add a command to return catalogue from cheap to expensive"""
