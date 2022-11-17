@@ -8,17 +8,29 @@ class Character:
         self.eye_color
         
 class Dressup:
-    def __init__(budget, character):
+    def __init__(self, budget, character):
         pass
     #initalizes attributes
     #sets username, budget, etc.
         self.budget
         self.character
         self.closet
-        """compare closets between different characters, prints who has more
-        set operations"""
+        self.wearing
+        """compare closets between different characters, prints clothes in
+        common using set operations"""
     
-    def wear_clothes():
+    def wear_clothes(self, item):
+        """Allows the user to wear clothes by moving clothes from closet to self
+        
+        Args:
+            item (str): the name of the clothing item that we're going to wear.
+            
+        Returns:
+            new self.wearing attribute
+            
+        Side-effects:
+            alters the state of self.closet and self.wearing
+        """
         pass
     #wear clothes and removes it from closet
     
@@ -61,12 +73,28 @@ class Dressup:
 
         
 def main(catalogue_filepath, savestate=None):
-    """Optional Parameters
+    """Runs the program, reads in necessary information and offers choices for
+    the player.
+    
+    Args:
+        catalogue_filepath (str): the filepath of a .csv file containing
+        various information on different clothes.
+        savestate (str): the filepath of a .txt file that contains information
+        on a player's previous settings. If given, loads in information based on
+        those settings. Defaults to None.
+    
+    Side effects:
+        Prints to standard output. Simulates an interactive application through 
+        the usage of the "while" statement. Allows users to call different
+        methods using keywords.
     """
-    """with_statements for opening file"""
+    
+    """Techniques used for this section:
+    - Optional Parameters
+    - Opening a file using with statements
+    """
+    
     pass
-    """if savestate != None, read the file and restore progress by filling in 
-    attributes of the character"""
 
 def parse_args(arglist):
     """argument parser"""
