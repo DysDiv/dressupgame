@@ -1,14 +1,29 @@
 """This program simulates a dress-up game where a user can put clothes on
 themselves."""
+from argparse import ArgumentParser
 
 class Character:
     """Allows user to set custom details for their character."""
     def __init__():
+        """ Initializes the Character Class
+
+        Side Effects:
+            Defines attributes of the Character class
+        """
         self.name
         self.eye_color
         
 class Dressup:
     def __init__(self, budget, character):
+        """ Initializes the Dressup class
+
+        Args:
+            budget (int): Spending token limit
+            character: Instance of character class
+
+        Side effects:
+            Defines the attributes of Dressup class
+        """
         pass
     #initalizes attributes
     #sets username, budget, etc.
@@ -97,7 +112,16 @@ def main(catalogue_filepath, savestate=None):
     pass
 
 def parse_args(arglist):
-    """argument parser"""
+    """ Parse command-line arguments
+
+    Expect one mandatory argument, the path to the file of clothings
+
+    Args:
+        arglist (list of str): command-line arguments
+
+    Returns:
+        namespace: the parsed argument as a namespace 
+    """
     pass
 
 if __name__ == "__main__":
