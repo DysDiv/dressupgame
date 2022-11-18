@@ -67,16 +67,22 @@ class Dressup:
     #prints catalogue from json file
     
     def buy_clothes():
+        """Layla's docs
+        """
         """Conditional Expression: if item not in closet and budget ok, buy"""
         pass
     #adds clothes to closet, subtracts from budget, checks if you already have
     
     def sell_clothes():
+        """Layla'a docstrings 
+        """
         """Conditional Expression: if item in closet, proceed"""
         pass
     #removes clothes from closet, refunds 50%, checks if it's in the closet
     
     def __add__():
+        """layla's docstrings
+        """
         """magic method, returns a list of clothes of that type when prompted"""
         """pick another name"""
         """use list comprehension to get the items"""
