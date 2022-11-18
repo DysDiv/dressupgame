@@ -29,11 +29,24 @@ class Character:
         pass
     #wear clothes and removes it from closet
     
-    def remove_clothes():
+    def remove_clothes(self, item):
+        """Removes an article of clothing
+
+        Args:
+            item(str): The article of clothing the user wants to remove
+
+        Side effects:
+            Redefines the contents worn by character and added it to self.closet
+        """
         pass
     #removes clothes, puts it into closet
     
-    def closet():
+    def closet(self):
+        """Stores the purchased and unworn clothes
+
+        Side effects:
+            Defines the contents of the closet
+        """
         pass
     #stores owned clothes
     
