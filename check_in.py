@@ -87,13 +87,15 @@ class Character:
         pass
     
     def __add__():
-        """Magic method (we will pick a new name)
+        """Magic method (we will pick a new name) uses the + symbol in additon 
+        to a category of clothes to find all clothes pertaining to that category. 
         CREDIT for list comprehension & generator expressions
-        """
-        """magic method, returns a list of clothes of that type when prompted"""
         
-        """use list comprehension to get the items"""
-        """list = [EXPR for ITERVAR in ITERABLE if CONDITION]"""
+        Returns: 
+        a list of strings: every article of clothes that pertains 
+        to a specific category. 
+        """
+        #list = [EXPR for ITERVAR in ITERABLE if CONDITION]
         pass
     
     def visualize(budget, time):
