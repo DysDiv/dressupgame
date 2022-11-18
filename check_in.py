@@ -1,34 +1,14 @@
 """This program simulates a dress-up game where a user can put clothes on
 themselves."""
-from argparse import ArgumentParser
 
 class Character:
-    """Allows user to set custom details for their character."""
-    def __init__():
-        """ Initializes the Character Class
-
-        Side Effects:
-            Defines attributes of the Character class
-        """
-        self.name
-        self.eye_color
-        
-class Dressup:
     def __init__(self, budget, character):
-        """ Initializes the Dressup class
-
-        Args:
-            budget (int): Spending token limit
-            character: Instance of character class
-
-        Side effects:
-            Defines the attributes of Dressup class
-        """
         pass
     #initalizes attributes
     #sets username, budget, etc.
+        self.name
         self.budget
-        self.character
+        self.eyecolor
         self.closet
         self.wearing
         """compare closets between different characters, prints clothes in
@@ -94,7 +74,7 @@ def main(catalogue_filepath, savestate=None):
     Args:
         catalogue_filepath (str): the filepath of a .csv file containing
         various information on different clothes.
-        savestate (str): the filepath of a .txt file that contains information
+        savestate (str): the filepath of a .json file that contains information
         on a player's previous settings. If given, loads in information based on
         those settings. Defaults to None.
     
