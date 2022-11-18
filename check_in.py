@@ -39,8 +39,14 @@ class Character:
     
     def catalogue(file):
         """
-        file (csv): A CSV file in UTF-8 encoding with columns "Clothes" (str), "Cost" (int), and "Cool Factor" (float). 
+        Reads in CSV file
+        
+        Args:
+            file (csv): A CSV file in UTF-8 encoding with columns "Clothing Name" (str), "Category" (str), "Cost" (int), and "Cool Factor" (float). 
         The first row of the file contains column headers; each subsequent row describes a single piece of clothes.
+        
+        Returns: 
+            file (csv) after reading it in
         """
         
         """lambda function, add a command to return catalogue from cheap to expensive"""
@@ -90,8 +96,16 @@ class Character:
         """list = [EXPR for ITERVAR in ITERABLE if CONDITION]"""
         pass
     
-    def visualize():
-        """use data vis tools to print out what the character has on"""
+    def visualize(budget, time):
+        """ 
+        Plots Budget over time using either seaborn or pyplot
+        
+        Args:
+           budget (float): amount of money the player has left after spending
+           time (int): the length of the game running
+        
+        Returns: 
+            plot of budget over time"""
 
         
 def main(catalogue_filepath, savestate=None):
