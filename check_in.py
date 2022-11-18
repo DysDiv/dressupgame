@@ -39,10 +39,10 @@ class Character:
     
     def catalogue(file):
         """
-        Reads in CSV file
+        Reads in CSV file and finds the max and min of cost and fashion score
         
         Args:
-            file (csv): A CSV file in UTF-8 encoding with columns "Clothing Name" (str), "Category" (str), "Cost" (int), and "Cool Factor" (float). 
+            file (csv): A CSV file in UTF-8 encoding with columns "Clothing Name" (str), "Category" (str), "Cost" (int), and "Fashion Score" (float). 
         The first row of the file contains column headers; each subsequent row describes a single piece of clothes.
         
         Returns: 
