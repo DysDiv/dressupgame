@@ -46,25 +46,46 @@ class Character:
         """lambda function, add a command to return catalogue from cheap to expensive"""
     #prints catalogue from json file
     
-    def buy_clothes():
-        """Layla's docs
+    def buy_clothes(self, item, budget):
+        """buys clothes from catalogue if whithin budget and not currently owned. 
+        CREDIT for conditional expression. 
+        
+        Args: 
+        item (str): item from catalogue to be bought.
+        budget (float): monetary budget
+        
+        Side Effects: 
+        alters attribute budget. 
+        
+        Returns: 
+        budget (float) after subtraction.
         """
-        """Conditional Expression: if item not in closet and budget ok, buy"""
+        #Conditional Expression: if item not in closet and budget ok, buy.
         pass
-    #adds clothes to closet, subtracts from budget, checks if you already have
     
-    def sell_clothes():
-        """Layla'a docstrings 
+    def sell_clothes(self, item, budget):
+        """sells clothes from closet if currently owned. 
+        
+        Args: 
+        item (str): item from closet to be sold.
+        budget (float): monetary budget 
+        
+        Side Effects: 
+        alters attribute budget.
+        
+        Returns: 
+        budget (float) after addition.
         """
-        """Conditional Expression: if item in closet, proceed"""
+        #Conditional Expression: if item in closet, proceed
+        #removes clothes from closet, refunds 50%, checks if it's in the closet.
         pass
-    #removes clothes from closet, refunds 50%, checks if it's in the closet
     
     def __add__():
-        """layla's docstrings
+        """Magic method (we will pick a new name)
+        CREDIT for list comprehension & generator expressions
         """
         """magic method, returns a list of clothes of that type when prompted"""
-        """pick another name"""
+        
         """use list comprehension to get the items"""
         """list = [EXPR for ITERVAR in ITERABLE if CONDITION]"""
         pass
