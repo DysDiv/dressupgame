@@ -120,7 +120,8 @@ class Character:
            time (int): the length of the game running
         
         Returns: 
-            plot of budget over time"""
+            plot of budget over time
+        """
 
         
 def main(catalogue_filepath, savestate=None):
