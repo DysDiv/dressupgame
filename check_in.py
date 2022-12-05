@@ -51,8 +51,10 @@ class Character:
         pass
     #removes clothes, puts it into closet
     
-    def closet(self):
+    def closet(self, parse):
         """Stores the purchased and unworn clothes
+        Args:
+            parse(str): passing unworn, bought, and removed clothes to closet
 
         Side effects:
             Defines the contents of the closet
