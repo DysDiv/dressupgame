@@ -164,7 +164,7 @@ def parse_args(arglist):
     Expect one mandatory argument, the path to the file of clothings
 
     Args:
-        arglist (list of str): command-line arguments
+        arglist (list of str): command-line arguments; path to clothes csv
 
     Returns:
         namespace: the parsed argument as a namespace 
