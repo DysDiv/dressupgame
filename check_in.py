@@ -1,6 +1,8 @@
 """This program simulates a dress-up game where a user can put clothes on
 themselves."""
 
+from argparse import ArgumentParser
+
 class Character:
     """ Creates a customizable character for user to dress up
      
@@ -12,17 +14,28 @@ class Character:
     """
     
     
-    def __init__(self, budget, character):
+    def __init__(self, budget = 100, other_player):
+        """Initializes the character class attributes additionally prints the
+        clothes from the two different users.
+
+        Args:
+            other_player (str): Second character used in comparison
+            budget (int, optional): Assigned player budget. Defaults to 100.
+        
+        Side effects:
+            Defines the values of the attributes and prints a statement of 
+            clothes that both player and other_player.
+        
+        Set operations
+        """
         pass
-    #initalizes attributes
-    #sets username, budget, etc.
+        #initalizes attributes
+        #sets player, budget, etc.
         self.name
         self.budget
         self.eyecolor
         self.closet
         self.wearing
-        """compare closets between different characters, prints clothes in
-        common using set operations"""
     
     def wear_clothes(self, item):
         """Allows the user to wear clothes by moving clothes from closet to self
@@ -33,7 +46,7 @@ class Character:
         Returns:
             new self.wearing attribute
             
-        Side-effects:
+        Side effects:
             alters the state of self.closet and self.wearing
         """
         pass
@@ -172,7 +185,10 @@ def parse_args(arglist):
     Returns:
         namespace: the parsed argument as a namespace 
     """
-    pass
+    parser = ArgumentParser()
+    parser.add_argument("filepath", help = "filepath of clothes cataloge csv")
+
+    return parser.parse_args(arglist)
 
 if __name__ == "__main__":
     pass
