@@ -2,6 +2,16 @@
 themselves."""
 
 class Character:
+    """ Creates a customizable character for user to dress up
+     
+     Attributes:  
+            name (str): name of person
+            clothes (str): clothes
+            closet (list of instances): clothes bought/clothes revomed
+            catalouge (dict): a dict full of different clothing items
+    """
+    
+    
     def __init__(self, budget, character):
         pass
     #initalizes attributes
