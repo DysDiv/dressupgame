@@ -14,7 +14,7 @@ class Character:
     """
     
     
-    def __init__(self, budget = 100, other_player):
+    def __init__(self, name, budget = 100):
         """Initializes the character class attributes additionally prints the
         clothes from the two different users.
 
@@ -28,12 +28,10 @@ class Character:
         
         Set operations
         """
-        pass
         #initalizes attributes
         #sets player, budget, etc.
-        self.name
+        self.name 
         self.budget
-        self.eyecolor
         self.closet
         self.wearing
     
@@ -171,8 +169,9 @@ def main(catalogue_filepath, savestate=None):
     - Optional Parameters
     - Opening a file using with statements
     """
-    
-    pass
+    if savestate == None:
+        player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
+        player = Character(player_name, )
 
 def parse_args(arglist):
     """ Parse command-line arguments
