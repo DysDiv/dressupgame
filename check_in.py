@@ -2,6 +2,8 @@
 themselves."""
 
 from argparse import ArgumentParser
+import pandas as pd
+import json
 
 class Character:
     """ Creates a customizable character for user to dress up
@@ -73,20 +75,7 @@ class Character:
         """
         pass
     #stores owned clothes
-    
-    def catalogue(file):
-        """
-        Reads in CSV file and finds the max and min of cost and fashion score
         
-        Args:
-            file (csv): A CSV file in UTF-8 encoding with columns "Clothing Name" (str), "Category" (str), "Cost" (int), and "Fashion Score" (float). 
-        The first row of the file contains column headers; each subsequent row describes a single piece of clothes.
-        
-        Returns: 
-            file (csv) after reading it in
-        """
-        
-        """lambda function, add a command to return catalogue from cheap to expensive"""
     #prints catalogue from json file
     
     def buy_clothes(self, item, budget):
@@ -146,8 +135,12 @@ class Character:
         Returns: 
             plot of budget over time
         """
-
+    def judge(self):
+        """Judges the user's score based on the clothing that they've worn.
+        """
         
+        pass
+    
 def main(catalogue_filepath, savestate=None):
     """Runs the program, reads in necessary information and offers choices for
     the player.
@@ -174,12 +167,26 @@ def main(catalogue_filepath, savestate=None):
         player = Character(player_name)
         
         while input(str("Please select a choice from the following options, or 'QUIT' to exist program:\n"
-                        "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue."
-                        "Enter 'CLOSET' to view the items within your personal closet."
-                        "Enter 'WEARING' to view the items that you are currently wearing."
-                        "Enter 'BUDGET' to view your current budget."
-                        "Enter 'JUDGE' in order to walk down the runway and judge your fashion!"
-                        )) != "QUIT":
+                        "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
+                        "Enter 'CLOSET' to view the items within your personal closet.\n"
+                        "Enter 'WEARING' to view the items that you are currently wearing.\n"
+                        "Enter 'BUDGET' to view your current budget.\n"
+                        "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
+                        "Enter 'VISUALIZE' in order to see your budget changes over time.")) != "QUIT":
+            if input == "CATALOGUE":
+                catalogue = pd.read_csv(catalogue_filepath)
+                print(catalogue.to_string())
+            elif input == "CLOSET":
+                print(player.closet)
+            elif input == "WEARING":
+                print(player.wearing)
+            elif input == "BUDGET":
+                print(player.budget)
+            elif input == "JUDGE":
+                judge(player)
+            elif input == "VISUALIZE":
+                pass
+                
         
 
 def parse_args(arglist):
