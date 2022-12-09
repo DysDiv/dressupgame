@@ -30,10 +30,10 @@ class Character:
         """
         #initalizes attributes
         #sets player, budget, etc.
-        self.name 
-        self.budget
-        self.closet
-        self.wearing
+        self.name = name
+        self.budget = budget
+        self.closet = []
+        self.wearing = []
     
     def wear_clothes(self, item):
         """Allows the user to wear clothes by moving clothes from closet to self
@@ -171,7 +171,16 @@ def main(catalogue_filepath, savestate=None):
     """
     if savestate == None:
         player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
-        player = Character(player_name, )
+        player = Character(player_name)
+        
+        while input(str("Please select a choice from the following options, or 'QUIT' to exist program:\n"
+                        "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue."
+                        "Enter 'CLOSET' to view the items within your personal closet."
+                        "Enter 'WEARING' to view the items that you are currently wearing."
+                        "Enter 'BUDGET' to view your current budget."
+                        "Enter 'JUDGE' in order to walk down the runway and judge your fashion!"
+                        )) != "QUIT":
+        
 
 def parse_args(arglist):
     """ Parse command-line arguments
