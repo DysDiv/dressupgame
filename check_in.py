@@ -10,25 +10,21 @@ class Character:
      
      Attributes:  
             name (str): name of person
-            clothes (str): clothes
-            closet (list of instances): clothes bought/clothes revomed
-            catalouge (dict): a dict full of different clothing items
+            budget (int): the budget of the player. Defaults to 100
+            closet (list of str): clothes bought/clothes removed
+            wearing (list of str): clothes that the player is currently wearing
     """
-    
     
     def __init__(self, name, budget = 100):
         """Initializes the character class attributes additionally prints the
         clothes from the two different users.
 
         Args:
-            other_player (str): Second character used in comparison
+            name (str): the name of the player
             budget (int, optional): Assigned player budget. Defaults to 100.
         
         Side effects:
-            Defines the values of the attributes and prints a statement of 
-            clothes that both player and other_player.
-        
-        Set operations
+            Defines the values of the attributes.
         """
         #initalizes attributes
         #sets player, budget, etc.
@@ -49,7 +45,13 @@ class Character:
         Side effects:
             alters the state of self.closet and self.wearing
         """
-        pass
+        if len(self.wearing) > 5:
+            print(f"Hey, you're wearing too much! You gotta take something off.")
+        elif item in self.closet:
+            self.wearing.append(item)
+            self.closet.remove(item)
+        else:
+            print(f"Looks like that's not something you can do.")
     #wear clothes and removes it from closet
     
     def remove_clothes(self, item):
@@ -61,30 +63,48 @@ class Character:
         Side effects:
             Redefines the contents worn by character and added it to self.closet
         """
-        pass
+        if item in self.wearing:
+            self.closet.append(item)
+            self.wearing.remove(item)
+        else:
+            print(f"Looks like that's not something you can do.")
     #removes clothes, puts it into closet
     
-    def closet(self, parse):
-        """Stores the purchased and unworn clothes
+    def print_closet(self):
+        """Displays the contents of the closet
        
-       Args:
-            parse(str): passing unworn, bought, and removed clothes to closet
-
         Side effects:
-            Defines the contents of the closet
+            Prints to stdout.
         """
-        pass
+        print(f"Here's what's in your closet. Take a look!")
+        for item in self.closet:
+            print(item)
     #stores owned clothes
+
+    def print_wearing(self):
+        """Displays the clothes the user is wearing.
         
-    #prints catalogue from json file
+        Side effects:
+            Prints to stdout.
+        """
+        print(f"Here's what you're wearing right now.")
+        for item in self.wearing:
+            print(item)
     
-    def buy_clothes(self, item, budget):
+    def print_budget(self):
+        """Prints the current budget of the player.
+        
+        Side effects:
+            Prints to stdout.
+        """
+        print(F"You currently have ${self.budget}.")
+        
+    def buy_clothes(self, item):
         """buys clothes from catalogue if whithin budget and not currently owned. 
         CREDIT for conditional expression. 
         
         Args: 
         item (str): item from catalogue to be bought.
-        budget (float): monetary budget
         
         Side Effects: 
         alters attribute budget. 
@@ -170,28 +190,36 @@ def main(catalogue_filepath, savestate=None):
     if savestate == None:
         player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
         player = Character(player_name)
-        
-        while input(str("Please select a choice from the following options, or 'QUIT' to exist program:\n"
+        catalogue = pd.read_csv(catalogue_filepath)
+        while input(str("Please select a choice from the following options, or 'QUIT' to exit program:\n"
                         "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
                         "Enter 'CLOSET' to view the items within your personal closet.\n"
                         "Enter 'WEARING' to view the items that you are currently wearing.\n"
                         "Enter 'BUDGET' to view your current budget.\n"
                         "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
-                        "Enter 'VISUALIZE' in order to see your budget changes over time.")) != "QUIT":
+                        "Enter 'VISUALIZE' in order to see your budget changes over time.\n"
+                        "Enter 'WEARCLOTHES' in order to put something on that you have!\n"
+                        "Enter 'TAKEOFF' in order to take clothing off.\n"
+                        "Enter 'SELL' in order to sell an article of clothing that you have.\n"
+                        "Enter 'BUY' in order to buy new clothing you don't have!\n"
+                        "Enter 'ADD' in order to see a category of clothes")) != "QUIT":
             if input == "CATALOGUE":
                 catalogue = pd.read_csv(catalogue_filepath)
                 print(catalogue.to_string())
             elif input == "CLOSET":
-                print(player.closet)
+                player.print_closet()
             elif input == "WEARING":
-                print(player.wearing)
+                player.print_wearing()
             elif input == "BUDGET":
-                print(player.budget)
+                player.print_budget()
             elif input == "JUDGE":
                 judge(player)
             elif input == "VISUALIZE":
                 pass
-                
+            elif input == "BUY":
+                item = input(str("Which item are you planning on purchasing? "))
+                if (catalogue["Clothing Name"].eq(item)).any():
+                    if player.budget > catalogue[item,'Cost']
         
 
 def parse_args(arglist):
