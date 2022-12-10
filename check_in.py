@@ -133,22 +133,19 @@ class Character:
         #removes clothes from closet, refunds 50%, checks if it's in the closet.
         pass
     
-    def __add__():
-        """Magic method (we will pick a new name) uses the + symbol in additon 
-        to a category of clothes to find all clothes pertaining to that category. 
-        CREDIT for list comprehension & generator expressions
+    def __add__(self, increase):
+        """Adds money to the budget 
         
-        Returns: 
-        a list of strings: every article of clothes that pertains 
-        to a specific category. 
+        Side Effects: 
+            Redefines the value of self.budget
+            Prints text that acknoledges the change in
 
         Concepts:
-        Magic Expression: Flavyne
-        List Comprehension: Layla
-        Custom List Sorting with a Key Function: Mia
+        Magic Expression: Mia
         """
-        #list = [EXPR for ITERVAR in ITERABLE if CONDITION]
-        pass
+        self.budget = float(self.budget) + increase
+        print(f"Your new budget is {self.budget}")
+        
     
     def visualize(budget, time):
         """ 
@@ -266,9 +263,9 @@ if __name__ == "__main__":
 - f-strings - Flavyne
 - with statements - William
 - the ArgumentParser class - Mia
-- Custom list sorting with a key funciton - Mia
+- Custom list sorting with a key funciton - Flavyne
 - comprehensions or generator expressions - Layla
-- magic methods other than __init__() - Flavyne
+- magic methods other than __init__() - Mia
 - concatenating, merging, filtering, or performing groupby operations on Pandas DataFrames - Anna
 - visualizing data with pyplot or seaborn - Anna
 """
