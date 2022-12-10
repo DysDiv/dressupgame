@@ -137,10 +137,8 @@ class Character:
         #removes clothes from closet, refunds 50%, checks if it's in the closet.
         pass
     
-    def __add__(self):
-        """Magic method (we will pick a new name) uses the + symbol in additon 
-        to a category of clothes to find all clothes pertaining to that category. 
-        CREDIT for list comprehension & generator expressions
+    def __add__(self, increase):
+        """Adds more money in budget
         
         Side Effects: 
             Redefines the value of self.budget
