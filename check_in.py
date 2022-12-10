@@ -114,6 +114,9 @@ class Character:
         budget (float) after subtraction.
         """
         #Conditional Expression: if item not in closet and budget ok, buy.
+        #for line in dataframe delete value[row number, "fashion score"]
+        #print dataframe
+        
         pass
     
     def sell_clothes(self, item, budget):
