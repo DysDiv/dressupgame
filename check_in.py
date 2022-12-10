@@ -101,7 +101,7 @@ class Character:
         """
         print(F"You currently have ${self.budget}.")
         
-    def buy_clothes(self, item):
+    def buy_clothes(self, item, df):
         """buys clothes from catalogue if whithin budget and not currently owned. 
         CREDIT for conditional expression. 
         
@@ -137,7 +137,7 @@ class Character:
         #removes clothes from closet, refunds 50%, checks if it's in the closet.
         pass
     
-    def __add__():
+    def __add__(self):
         """Magic method (we will pick a new name) uses the + symbol in additon 
         to a category of clothes to find all clothes pertaining to that category. 
         CREDIT for list comprehension & generator expressions
