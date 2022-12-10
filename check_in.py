@@ -3,6 +3,7 @@ themselves."""
 
 from argparse import ArgumentParser
 import pandas as pd
+from PIL import Image
 import json
 
 class Character:
@@ -163,8 +164,23 @@ class Character:
     def judge(self):
         """Judges the user's score based on the clothing that they've worn.
         """
+        fashion_sum = self.wearing[self.wearing["Clothing Name"].isin(self.wearing)]
+        ["Fashion Score"].sum()
         
-        pass
+        if fashion_sum <= 5:
+            print(f"Loser, do better. \n Fashion Score: {fashion_sum}/25")
+        elif fashion_sum >= 6 and fashion_sum <= 10:
+            pass
+        elif fashion_sum >= 11 and fashion_sum <= 15:
+            pass  
+        elif fashion_sum >= 16 and fashion_sum <= 20:
+            pass
+        else: 
+            pass
+        if self.wearing == ["Blue Button Down", "Classic Jeans", "Blue Tie", "Glasses"]:
+            im = Image.open(r"/Users/miamonique/Desktop/candi.png")
+            im.show()
+       
     
 def main(catalogue_filepath, savestate=None):
     """Runs the program, reads in necessary information and offers choices for
@@ -213,7 +229,7 @@ def main(catalogue_filepath, savestate=None):
             elif input == "BUDGET":
                 player.print_budget()
             elif input == "JUDGE":
-                judge(player)
+                player.judge()
             elif input == "VISUALIZE":
                 pass
             elif input == "BUY":
