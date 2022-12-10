@@ -190,7 +190,7 @@ def main(catalogue_filepath, savestate=None):
     if savestate == None:
         player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
         player = Character(player_name)
-        
+        catalogue = pd.read_csv(catalogue_filepath)
         while input(str("Please select a choice from the following options, or 'QUIT' to exit program:\n"
                         "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
                         "Enter 'CLOSET' to view the items within your personal closet.\n"
@@ -218,7 +218,8 @@ def main(catalogue_filepath, savestate=None):
                 pass
             elif input == "BUY":
                 item = input(str("Which item are you planning on purchasing? "))
-                if item in 
+                if item in catalogue['Clothing Name']:
+                    if player.budget > catalogue[item,'Cost']
         
 
 def parse_args(arglist):
