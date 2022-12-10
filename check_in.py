@@ -2,6 +2,8 @@
 themselves."""
 
 from argparse import ArgumentParser
+import pandas as pd
+import json
 
 class Character:
     """ Creates a customizable character for user to dress up
@@ -14,7 +16,7 @@ class Character:
     """
     
     
-    def __init__(self, budget = 100, other_player):
+    def __init__(self, name, budget = 100):
         """Initializes the character class attributes additionally prints the
         clothes from the two different users.
 
@@ -28,14 +30,12 @@ class Character:
         
         Set operations
         """
-        pass
         #initalizes attributes
         #sets player, budget, etc.
-        self.name
-        self.budget
-        self.eyecolor
-        self.closet
-        self.wearing
+        self.name = name
+        self.budget = budget
+        self.closet = []
+        self.wearing = []
     
     def wear_clothes(self, item):
         """Allows the user to wear clothes by moving clothes from closet to self
@@ -75,20 +75,7 @@ class Character:
         """
         pass
     #stores owned clothes
-    
-    def catalogue(file):
-        """
-        Reads in CSV file and finds the max and min of cost and fashion score
         
-        Args:
-            file (csv): A CSV file in UTF-8 encoding with columns "Clothing Name" (str), "Category" (str), "Cost" (int), and "Fashion Score" (float). 
-        The first row of the file contains column headers; each subsequent row describes a single piece of clothes.
-        
-        Returns: 
-            file (csv) after reading it in
-        """
-        
-        """lambda function, add a command to return catalogue from cheap to expensive"""
     #prints catalogue from json file
     
     def buy_clothes(self, item, budget):
@@ -133,6 +120,11 @@ class Character:
         Returns: 
         a list of strings: every article of clothes that pertains 
         to a specific category. 
+
+        Concepts:
+        Magic Expression: Flavyne
+        List Comprehension: Layla
+        Custom List Sorting with a Key Function: Mia
         """
         #list = [EXPR for ITERVAR in ITERABLE if CONDITION]
         pass
@@ -148,8 +140,12 @@ class Character:
         Returns: 
             plot of budget over time
         """
-
+    def judge(self):
+        """Judges the user's score based on the clothing that they've worn.
+        """
         
+        pass
+    
 def main(catalogue_filepath, savestate=None):
     """Runs the program, reads in necessary information and offers choices for
     the player.
@@ -171,8 +167,32 @@ def main(catalogue_filepath, savestate=None):
     - Optional Parameters
     - Opening a file using with statements
     """
-    
-    pass
+    if savestate == None:
+        player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
+        player = Character(player_name)
+        
+        while input(str("Please select a choice from the following options, or 'QUIT' to exist program:\n"
+                        "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
+                        "Enter 'CLOSET' to view the items within your personal closet.\n"
+                        "Enter 'WEARING' to view the items that you are currently wearing.\n"
+                        "Enter 'BUDGET' to view your current budget.\n"
+                        "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
+                        "Enter 'VISUALIZE' in order to see your budget changes over time.")) != "QUIT":
+            if input == "CATALOGUE":
+                catalogue = pd.read_csv(catalogue_filepath)
+                print(catalogue.to_string())
+            elif input == "CLOSET":
+                print(player.closet)
+            elif input == "WEARING":
+                print(player.wearing)
+            elif input == "BUDGET":
+                print(player.budget)
+            elif input == "JUDGE":
+                judge(player)
+            elif input == "VISUALIZE":
+                pass
+                
+        
 
 def parse_args(arglist):
     """ Parse command-line arguments
@@ -202,7 +222,7 @@ if __name__ == "__main__":
 - f-strings - Flavyne
 - with statements - William
 - the ArgumentParser class - Mia
-- set operations on sets or frozensets - Mia
+- Custom list sorting with a key funciton - Mia
 - comprehensions or generator expressions - Layla
 - magic methods other than __init__() - Flavyne
 - concatenating, merging, filtering, or performing groupby operations on Pandas DataFrames - Anna
