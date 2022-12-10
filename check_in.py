@@ -218,7 +218,7 @@ def main(catalogue_filepath, savestate=None):
                 pass
             elif input == "BUY":
                 item = input(str("Which item are you planning on purchasing? "))
-                if item in catalogue['Clothing Name']:
+                if (catalogue["Clothing Name"].eq(item)).any():
                     if player.budget > catalogue[item,'Cost']
         
 
