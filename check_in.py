@@ -2,6 +2,7 @@
 themselves."""
 
 from argparse import ArgumentParser
+import sys
 import pandas as pd
 from PIL import Image
 import json
@@ -133,8 +134,9 @@ class Character:
         #removes clothes from closet, refunds 50%, checks if it's in the closet.
         pass
     
-    def __add__():
-        """Magic method (we will pick a new name) uses the + symbol in additon 
+    def __add__(self, ):
+        """Add outfit,`q
+        Magic method (we will pick a new name) uses the + symbol in additon 
         to a category of clothes to find all clothes pertaining to that category. 
         CREDIT for list comprehension & generator expressions
         
@@ -255,8 +257,9 @@ def parse_args(arglist):
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
-    pass
-    """f-strings"""
+    args = parse_args(sys.argv[1:])
+    main(args.filepath)
+
     
     
 """Here's the list of the techniques we want to showcase
