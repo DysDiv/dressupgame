@@ -120,6 +120,11 @@ class Character:
         Returns: 
         a list of strings: every article of clothes that pertains 
         to a specific category. 
+
+        Concepts:
+        Magic Expression: Flavyne
+        List Comprehension: Layla
+        Custom List Sorting with a Key Function: Mia
         """
         #list = [EXPR for ITERVAR in ITERABLE if CONDITION]
         pass
@@ -217,7 +222,7 @@ if __name__ == "__main__":
 - f-strings - Flavyne
 - with statements - William
 - the ArgumentParser class - Mia
-- set operations on sets or frozensets - Mia
+- Custom list sorting with a key funciton - Mia
 - comprehensions or generator expressions - Layla
 - magic methods other than __init__() - Flavyne
 - concatenating, merging, filtering, or performing groupby operations on Pandas DataFrames - Anna
