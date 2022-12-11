@@ -115,22 +115,22 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
+        
+        
         catalogue = pd.read_csv('DressUp Game - Sheet1.csv')
-        display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
-        index, Clothing_Name, Category, Cost in zip(catalogue.index, 
-        catalogue['Clothing Name'],catalogue['Category'], catalogue['Cost'])]) 
+        
+        display = sorted(display, key = lambda x: x[3])
+        display = ([(f"{Index}: {Name} ({Category}) ${Cost}") 
+                    for Index, Name, Category, 
+                    Cost in zip(catalogue.index, catalogue["Clothing Name"],
+                                catalogue["Category"], catalogue["Cost"])])
+        
+        print(display)
+
         
         for line in display: 
             print (line + "\n")
-        
-        
-        #list comp - usedto present the dataframe 
-        #sorted() - used to sort the result from list comp by cost
-        #  (default lowest to highest)
-        df = item.sort_values(by='Cost', key=lambda x: x)
-        print(df)
-        pass
-    
+      
     def sell_clothes(self, item, budget):
         """sells clothes from closet if currently owned. 
         
@@ -220,7 +220,11 @@ def main(catalogue_filepath):
     - Opening a file using with statements
     """
     player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
-    player = Character(player_name)
+    budget = input(int("Please choose your budget, or leave blank for default (100): "))
+    if budget != "":
+        player = Character(player_name, budget)
+    else:
+        player = Character(player_name)
     catalogue = pd.read_csv(catalogue_filepath)
     response = ("Please select a choice from the following options, or 'QUIT' to exit program:\n"
                     "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
