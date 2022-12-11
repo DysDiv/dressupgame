@@ -119,7 +119,8 @@ class Character:
         #   that excludes fashion score
         #sorted() - used to sort the result from list comp by cost
         #  (default lowest to highest)
-        
+        df = item.sort_values(by='Cost', key=lambda x: x)
+        print(df)
         pass
     
     def sell_clothes(self, item, budget):
