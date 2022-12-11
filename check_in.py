@@ -130,15 +130,7 @@ class Character:
         
         for line in display: 
             print (line + "\n")
-        
-        
-        #list comp - usedto present the dataframe 
-        #sorted() - used to sort the result from list comp by cost
-        #  (default lowest to highest)
-        df = item.sort_values(by='Cost', key=lambda x: x)
-        print(df)
-        pass
-    
+      
     def sell_clothes(self, item, budget):
         """sells clothes from closet if currently owned. 
         
