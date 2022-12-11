@@ -120,9 +120,13 @@ class Character:
         #sorted() - used to sort the result from list comp by cost
         #  (default lowest to highest)
          #find soemthing to use lambda for
-        df = item.sort_values(by='Cost', key=lambda x: x)
+        print(display.sort_values(["Cost"], ascending = True))
+        #"display" for the example mia made
+        
+        df = item.sort_values(by='Cost', key=lambda x: x[3], reverse = True)
         print(df)
         
+    
         # df['Sum'] = df.sum(axis=1)
         #print(df)
         #find the average clothing cost
