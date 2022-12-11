@@ -175,13 +175,13 @@ class Character:
         if fashion_sum <= 5:
             print(f"Loser, do better. \n Fashion Score: {fashion_sum}/25")
         elif fashion_sum >= 6 and fashion_sum <= 10:
-            pass
+            print(f"Getting There. \n Fashion Score: {fashion_sum}/25")
         elif fashion_sum >= 11 and fashion_sum <= 15:
-            pass  
+            print(f"So Close... \n Fashion Score: {fashion_sum}/25")  
         elif fashion_sum >= 16 and fashion_sum <= 20:
-            pass
+            print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
         else: 
-            pass
+            print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
         if self.wearing == ["Blue Button Down", "Classic Jeans", "Blue Tie", "Glasses"]:
             im = Image.open(r"/Users/miamonique/Desktop/candi.png")
             im.show()
