@@ -115,24 +115,13 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
+        #no variable catalogue 
+        for item in catalogue: 
+            print(item + "\n")
+        
         #list comp - usedto present the dataframe 
-        #   that excludes fashion score
         #sorted() - used to sort the result from list comp by cost
         #  (default lowest to highest)
-         #find soemthing to use lambda for
-        print(display.sort_values(["Cost"], ascending = True))
-        #"display" for the example mia made
-        
-        df = item.sort_values(by='Cost', key=lambda x: x[3], reverse = True)
-        print(df)
-        
-    
-        # df['Sum'] = df.sum(axis=1)
-        #print(df)
-        #find the average clothing cost
-        #df3 = df.assign(Percentage = lambda x: (x['Cost'] /sum("Cost"))
-
-        
         
         pass
     
