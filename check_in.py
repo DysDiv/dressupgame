@@ -115,8 +115,11 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
+        #no variable catalogue 
+        for item in catalogue: 
+            print(item + "\n")
+        
         #list comp - usedto present the dataframe 
-        #   that excludes fashion score
         #sorted() - used to sort the result from list comp by cost
         #  (default lowest to highest)
         df = item.sort_values(by='Cost', key=lambda x: x)
