@@ -102,7 +102,7 @@ class Character:
         #implementing the __add__ function here
         print("Add more funds by using budget + (however much you want to increase)")
         
-    def buy_clothes(self, item):
+    def buy_clothes(self):
         """buys clothes from catalogue if whithin budget and not currently owned. 
         CREDIT for conditional expression. 
         
@@ -115,15 +115,21 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
-        #no variable catalogue 
-        for item in catalogue: 
-            print(item + "\n")
+        catalogue= pd.read_csv("DressUp Game - Sheet1.")
+        display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
+        index, Clothing_Name, Category,Cost in zip(catalogue.index, 
+        catalogue['Clothing Name'],catalogue['Category'], catalogue['Cost'])]) 
+      
         
-        #list comp - usedto present the dataframe 
-        #sorted() - used to sort the result from list comp by cost
-        #  (default lowest to highest)
-        df = item.sort_values(by='Cost', key=lambda x: x)
+         item.sort_values(by='Cost', key=lambda x: x)
         print(df)
+        
+        for line in display: 
+            print (line + "\n")
+        
+        
+        
+        
         pass
     
     def sell_clothes(self, item, budget):
@@ -139,8 +145,14 @@ class Character:
         Returns: 
         budget (float) after addition.
         """
-        #Conditional Expression: if item in closet, proceed, else error message
-        #removes clothes from closet, refunds 50%, restates budget -> menue
+        
+        
+        display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
+        index, Clothing_Name, Category,Cost in zip(self.closet.index, 
+        self.closet['Clothing Name'],self.closet['Category'], )]) 
+        
+        for line in display: 
+            print (line + "\n")
         
         pass
     
