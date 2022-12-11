@@ -119,6 +119,16 @@ class Character:
         #   that excludes fashion score
         #sorted() - used to sort the result from list comp by cost
         #  (default lowest to highest)
+         #find soemthing to use lambda for
+        df = item.sort_values(by='Cost', key=lambda x: x)
+        print(df)
+        
+        # df['Sum'] = df.sum(axis=1)
+        #print(df)
+        #find the average clothing cost
+        #df3 = df.assign(Percentage = lambda x: (x['Cost'] /sum("Cost"))
+
+        
         
         pass
     
