@@ -5,7 +5,6 @@ from argparse import ArgumentParser
 import sys
 import pandas as pd
 from PIL import Image
-import json
 
 class Character:
     """ Creates a customizable character for user to dress up
@@ -187,16 +186,13 @@ class Character:
             im.show()
        
     
-def main(catalogue_filepath, savestate=None):
+def main(catalogue_filepath):
     """Runs the program, reads in necessary information and offers choices for
     the player.
     
     Args:
         catalogue_filepath (str): the filepath of a .csv file containing
         various information on different clothes.
-        savestate (str): the filepath of a .json file that contains information
-        on a player's previous settings. If given, loads in information based on
-        those settings. Defaults to None.
     
     Side effects:
         Prints to standard output. Simulates an interactive application through 
@@ -208,39 +204,83 @@ def main(catalogue_filepath, savestate=None):
     - Optional Parameters
     - Opening a file using with statements
     """
-    if savestate == None:
-        player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
-        player = Character(player_name)
-        catalogue = pd.read_csv(catalogue_filepath)
-        while input(str("Please select a choice from the following options, or 'QUIT' to exit program:\n"
-                        "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
-                        "Enter 'CLOSET' to view the items within your personal closet.\n"
-                        "Enter 'WEARING' to view the items that you are currently wearing.\n"
-                        "Enter 'BUDGET' to view your current budget.\n"
-                        "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
-                        "Enter 'VISUALIZE' in order to see your budget changes over time.\n"
-                        "Enter 'WEARCLOTHES' in order to put something on that you have!\n"
-                        "Enter 'TAKEOFF' in order to take clothing off.\n"
-                        "Enter 'SELL' in order to sell an article of clothing that you have.\n"
-                        "Enter 'BUY' in order to buy new clothing you don't have!\n"
-                        "Enter 'ADD' in order to see a category of clothes")) != "QUIT":
-            if input == "CATALOGUE":
-                catalogue = pd.read_csv(catalogue_filepath)
-                print(catalogue.to_string())
-            elif input == "CLOSET":
-                player.print_closet()
-            elif input == "WEARING":
-                player.print_wearing()
-            elif input == "BUDGET":
-                player.print_budget()
-            elif input == "JUDGE":
-                player.judge()
-            elif input == "VISUALIZE":
-                pass
-            elif input == "BUY":
-                item = input(str("Which item are you planning on purchasing? "))
-                if (catalogue["Clothing Name"].eq(item)).any():
-                    if player.budget > catalogue[item,'Cost']
+    player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
+    player = Character(player_name)
+    catalogue = pd.read_csv(catalogue_filepath)
+    response = ("Please select a choice from the following options, or 'QUIT' to exit program:\n"
+                    "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
+                    "Enter 'CLOSET' to view the items within your personal closet.\n"
+                    "Enter 'WEARING' to view the items that you are currently wearing.\n"
+                    "Enter 'BUDGET' to view your current budget.\n"
+                    "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
+                    "Enter 'VISUALIZE' in order to see your budget changes over time.\n"
+                    "Enter 'WEARCLOTHES' in order to put something on that you have!\n"
+                    "Enter 'TAKEOFF' in order to take clothing off.\n"
+                    "Enter 'SELL' in order to sell an article of clothing that you have.\n"
+                    "Enter 'BUY' in order to buy new clothing you don't have!\n"
+                    "Enter 'ADD' in order to see a category of clothes.\n"
+                    "Enter 'SAVE' in order to save your current progress to a file.\n"
+                    "Enter 'LOAD' in order to load your progress from a file.")
+    while response != "QUIT":
+        
+        if response == "CATALOGUE":
+            catalogue = pd.read_csv(catalogue_filepath)
+            print(catalogue.to_string())
+            
+        elif response == "CLOSET":
+            player.print_closet()
+            
+        elif response == "WEARING":
+            player.print_wearing()
+            
+        elif response == "BUDGET":
+            player.print_budget()
+            
+        elif response == "JUDGE":
+            player.judge()
+            
+        elif response == "VISUALIZE":
+            pass
+        
+        elif response == "BUY":
+            item = input(str("Which item are you planning on purchasing? "))
+            if (catalogue["Clothing Name"].eq(item)).any():
+                if player.budget > catalogue[item,'Cost']
+                
+        elif response == "LOAD":
+            filepath = input(str("Please enter the filepath of the save file: "))
+            with open(filepath, "r", encoding = "UTF-8") as f:
+                lines = f.read().splitlines()
+            player.name = lines[0]
+            player.budget = int(lines[1])
+            player.closet = lines[2].split(",")
+            player.wearing = lines[3].split(",")
+            
+        elif response == "SAVE":
+            filename = input(str("What is the name of the file you'd like the save data to be called? "))
+            with open (filename, "w", encoding = "UTF-8") as f:
+                f.write(f"{player.name}\n")
+                f.write(f"{player.budget}]n")
+                f.write(f"{','.join(player.closet)}\n")
+                f.write(f"{','.join(player.wearing)}")    
+        
+        else:
+            print(f"Sorry, that's not an option. Why don't you try again?")
+        
+        response = input(str("Please select a choice from the following options, or 'QUIT' to exit program:\n"
+                    "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
+                    "Enter 'CLOSET' to view the items within your personal closet.\n"
+                    "Enter 'WEARING' to view the items that you are currently wearing.\n"
+                    "Enter 'BUDGET' to view your current budget.\n"
+                    "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
+                    "Enter 'VISUALIZE' in order to see your budget changes over time.\n"
+                    "Enter 'WEARCLOTHES' in order to put something on that you have!\n"
+                    "Enter 'TAKEOFF' in order to take clothing off.\n"
+                    "Enter 'SELL' in order to sell an article of clothing that you have.\n"
+                    "Enter 'BUY' in order to buy new clothing you don't have!\n"
+                    "Enter 'ADD' in order to see a category of clothes.\n"
+                    "Enter 'SAVE' in order to save your current progress to a file.\n"
+                    "Enter 'LOAD' in order to load your progress from a file."))            
         
 
 def parse_args(arglist):
