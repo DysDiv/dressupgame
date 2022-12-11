@@ -115,10 +115,18 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
+        
+        
         catalogue = pd.read_csv('DressUp Game - Sheet1.csv')
-        display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
-        index, Clothing_Name, Category, Cost in zip(catalogue.index, 
-        catalogue['Clothing Name'],catalogue['Category'], catalogue['Cost'])]) 
+        
+        display = sorted(display, key = lambda x: x[3])
+        display = ([(f"{Index}: {Name} ({Category}) ${Cost}") 
+                    for Index, Name, Category, 
+                    Cost in zip(catalogue.index, catalogue["Clothing Name"],
+                                catalogue["Category"], catalogue["Cost"])])
+        
+        print(display)
+
         
         for line in display: 
             print (line + "\n")
