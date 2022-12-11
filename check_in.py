@@ -115,8 +115,6 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
-        
-        
         catalogue = pd.read_csv("clothes.csv")
         
         display = catalogue.sort_values(by = "Cost")
@@ -141,9 +139,7 @@ class Character:
             print("Your new purchase is available in your closet")
         else: 
             print("Sorry your card got declined lol, returning to main menu")
-
-
-
+        
         #Take the index and add to closet, subtract cost from self.budget,
         #return to main menu
       
@@ -282,9 +278,7 @@ def main(catalogue_filepath):
             pass
         
         elif response == "BUY":
-            item = input(str("Which item are you planning on purchasing? "))
-            if (catalogue["Clothing Name"].eq(item)).any():
-                if player.budget > catalogue[item,'Cost']
+            player.buy_clothes()
                 
         elif response == "LOAD":
             filepath = input(str("Please enter the filepath of the save file: "))
