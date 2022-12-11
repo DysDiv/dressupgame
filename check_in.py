@@ -99,9 +99,11 @@ class Character:
         Side effects:
             Prints to stdout.
         """
-        print(F"You currently have ${self.budget}.")
+        print(f"You currently have ${self.budget}.")
+        #implementing the __add__ function here
+        print("Add more funds by using budget + (however much you want to increase)")
         
-    def buy_clothes(self, item, df):
+    def buy_clothes(self, item):
         """buys clothes from catalogue if whithin budget and not currently owned. 
         CREDIT for conditional expression. 
         
@@ -114,9 +116,10 @@ class Character:
         Returns: 
         budget (float) after subtraction.
         """
-        #Conditional Expression: if item not in closet and budget ok, buy.
-        #for line in dataframe delete value[row number, "fashion score"]
-        #print dataframe
+        #list comp - usedto present the dataframe 
+        #   that excludes fashion score
+        #sorted() - used to sort the result from list comp by cost
+        #  (default lowest to highest)
         
         pass
     
@@ -133,8 +136,9 @@ class Character:
         Returns: 
         budget (float) after addition.
         """
-        #Conditional Expression: if item in closet, proceed
-        #removes clothes from closet, refunds 50%, checks if it's in the closet.
+        #Conditional Expression: if item in closet, proceed, else error message
+        #removes clothes from closet, refunds 50%, restates budget -> menue
+        
         pass
     
     def __add__(self, increase):
