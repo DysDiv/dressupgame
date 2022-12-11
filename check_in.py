@@ -117,19 +117,22 @@ class Character:
         """
         
         
-        catalogue = pd.read_csv('DressUp Game - Sheet1.csv')
+        catalogue = pd.read_csv("clothes.csv")
         
-        display = sorted(display, key = lambda x: x[3])
+        display = catalogue.sort_values(by = "Cost")
         display = ([(f"{Index}: {Name} ({Category}) ${Cost}") 
-                    for Index, Name, Category, 
-                    Cost in zip(catalogue.index, catalogue["Clothing Name"],
+                    for Index, Name, Category, Cost
+                    in zip(catalogue.index, catalogue["Clothing Name"],
                                 catalogue["Category"], catalogue["Cost"])])
-        
-        print(display)
 
         
         for line in display: 
             print (line + "\n")
+        
+        userpurchase = input("Which item are you interested in purchasing?"
+        + " \nType num: ")
+        #Take the index and add to closet, subtract cost from self.budget,
+        #return to main menu
       
     def sell_clothes(self, item, budget):
         """sells clothes from closet if currently owned. 
@@ -143,6 +146,10 @@ class Character:
         
         Returns: 
         budget (float) after addition.
+
+        Techniques Used:
+        List comprehension
+        Sequence Unpacking
         """
         
         
@@ -331,6 +338,7 @@ if __name__ == "__main__":
 - f-strings - Flavyne
 - with statements - William
 - the ArgumentParser class - Mia
+- Sequence unpacking - Mia
 - Custom list sorting with a key funciton - Flavyne
 - comprehensions or generator expressions - Layla
 - magic methods other than __init__() - Mia
