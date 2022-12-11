@@ -129,8 +129,21 @@ class Character:
         for line in display: 
             print (line + "\n")
         
-        userpurchase = input("Which item are you interested in purchasing?"
+        itemindex = int(input("Which item are you interested in purchasing?")
         + " \nType num: ")
+
+        itemcost = int(catalogue["Cost"].loc[catalogue.index[itemindex]])
+        itemname = catalogue["Clothing Name"].iloc[int(itemindex)]
+        if self.budget >= itemcost:
+            self.budget -= itemcost
+            self.closet.append(itemname) #change if only want to put clothe title
+            print(f"You purchased {itemname}!\n ")
+            print("Your new purchase is available in your closet")
+        else: 
+            print("Sorry your card got declined lol, returning to main menu")
+
+
+
         #Take the index and add to closet, subtract cost from self.budget,
         #return to main menu
       
