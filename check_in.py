@@ -220,7 +220,11 @@ def main(catalogue_filepath):
     - Opening a file using with statements
     """
     player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
-    player = Character(player_name)
+    budget = input(int("Please choose your budget, or leave blank for default (100): "))
+    if budget != "":
+        player = Character(player_name, budget)
+    else:
+        player = Character(player_name)
     catalogue = pd.read_csv(catalogue_filepath)
     response = ("Please select a choice from the following options, or 'QUIT' to exit program:\n"
                     "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
