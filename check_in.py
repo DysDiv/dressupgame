@@ -165,15 +165,40 @@ class Character:
             List Comprehension (Layla)
             Sequence Unpacking (Mia)
         """
+        catalogue = pd.read_csv("clothes.csv")
         
-        display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
-        index, Clothing_Name, Category,Cost in zip(self.closet.index, 
-        self.closet['Clothing Name'],self.closet['Category'], )]) 
+        itemindex = catalogue.sort_values([(f"{Index}: {Name} ${Cost}") 
+                    for Index, Name, Cost
+                    in zip(catalogue.index, catalogue["Clothing Name"],
+                                catalogue["Cost"])])
         
-        for line in display: 
-            print (line + "\n")
+       
+        itemcost = int(catalogue["Cost"].loc[catalogue.index[itemindex]])
         
-        pass
+        for x in self.closet:
+            self.closet.append(f"This item will be sold at ${(itemcost) * 0.5}")
+        else:
+            print(f"Try selling something else") 
+        
+        itemindex = int(input("Which item are you interested in selling?")
+        + " \nType num: ")
+        
+        if x in self.closet:
+            self.closet.remove(x)
+            print(f"You have sold {self.x}. n\
+                You currently have ${self.budget +(itemcost) * 0.5 }.")
+        else:
+            pass
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
     def __add__(self, increase):
         """Magic method that allows the user to add more to their budget.
