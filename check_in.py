@@ -97,6 +97,9 @@ class Character:
         
         Side effects:
             Prints to stdout.
+        
+        Techniques Used:
+        F-Strings
         """
         print(f"You currently have ${self.budget}.")
         #implementing the __add__ function here
@@ -114,6 +117,10 @@ class Character:
         
         Returns: 
         budget (float) after subtraction.
+
+        Techniques Used:
+        List comprehension
+        Sequence Unpacking
         """
         catalogue = pd.read_csv("clothes.csv")
         
@@ -178,8 +185,9 @@ class Character:
             Redefines the value of self.budget
             Prints text that acknoledges the change in
 
-        Concepts:
-        Magic Expression: Mia
+        Techniques Used:
+        Magic Expression
+        F Strings
         """
         self.budget = float(self.budget) + increase
         print(f"Your new budget is {self.budget}")
@@ -195,6 +203,9 @@ class Character:
         
         Returns: 
             plot of budget over time
+
+        Techniques Used:
+        F-string
         """
     def judge(self):
         """Judges the user's score based on the clothing that they've worn.
@@ -326,6 +337,9 @@ def parse_args(arglist):
 
     Returns:
         namespace: the parsed argument as a namespace 
+    
+    Techniques used:
+    Parse args
     """
     parser = ArgumentParser()
     parser.add_argument("filepath", help = "filepath of clothes cataloge csv")
