@@ -1,5 +1,7 @@
 """This program simulates a dress-up game where a user can put clothes on
-themselves."""
+themselves. It contains a multidude of various features that makes the gameplay
+feel realistic, such as budget tracking, selecting clothes from catalogues,
+logic checks, savestates, and much more."""
 
 from argparse import ArgumentParser
 import sys
@@ -7,25 +9,28 @@ import pandas as pd
 from PIL import Image
 
 class Character:
-    """ Creates a customizable character for user to dress up
+    """A representation of the player character that tracks information on name,
+    current budget, what's in their closet, and what they are wearing.
      
      Attributes:  
-            name (str): name of person
-            budget (int): the budget of the player. Defaults to 100
-            closet (list of str): clothes bought/clothes removed
-            wearing (list of str): clothes that the player is currently wearing
+        name (str): name of person
+        budget (int): the budget of the player. Defaults to 100
+        closet (list of str): clothes purchased and not currently worn
+        wearing (list of str): clothes that the player is currently wearing
     """
     
     def __init__(self, name, budget = 100):
-        """Initializes the character class attributes additionally prints the
-        clothes from the two different users.
-
+        """Initializes the Character class object.
+        
         Args:
             name (str): the name of the player
             budget (int, optional): Assigned player budget. Defaults to 100.
         
         Side effects:
-            Defines the values of the attributes.
+            Defines the values of the attributes `name`, `budget`, `closet`, and
+            `wearing`.
+            
+        Technique: Optional Parameter (William)
         """
         #initalizes attributes
         #sets player, budget, etc.
@@ -35,18 +40,17 @@ class Character:
         self.wearing = []
     
     def wear_clothes(self, item):
-        """Allows the user to wear clothes by moving clothes from closet to self
+        """Allows the user to wear clothes by moving clothes from `self.closet`
+        to `self.wearing`, if the number of clothes doesn't exceed its max.
         
         Args:
             item (str): the name of the clothing item that we're going to wear.
             
-        Returns:
-            new self.wearing attribute
-            
         Side effects:
-            alters the state of self.closet and self.wearing
+            Alters the state of `self.closet` and `self.wearing`.
+            Prints to stdout.
         
-        Technique used: conditional expressions
+        Technique: Conditional Expressions (Layla)
         """
         if len(self.wearing) > 5:
             print(f"Hey, you're wearing too much! You gotta take something off.")
@@ -58,14 +62,16 @@ class Character:
     #wear clothes and removes it from closet
     
     def remove_clothes(self, item):
-        """Removes an article of clothing
+        """Removes an article of clothing currently worn.
 
         Args:
             item(str): The article of clothing the user wants to remove
 
         Side effects:
-            Redefines the contents worn by character and added it to self.closet
+            Alters the state of `self.closet` and `self.wearing`.
+            Prints to stdout.
         
+        Technique: f-strings (Flavyne)
         """
         if item in self.wearing:
             self.closet.append(item)
@@ -75,7 +81,7 @@ class Character:
     #removes clothes, puts it into closet
     
     def print_closet(self):
-        """Displays the contents of the closet
+        """Displays the contents of the closet.
        
         Side effects:
             Prints to stdout.
@@ -101,14 +107,15 @@ class Character:
         Side effects:
             Prints to stdout.
         
-        Techniques Used:
-        F-Strings
+        Techniques used: f-strings (Flavyne)
         """
         print(f"You currently have ${self.budget}.")
-        print("Add more funds by using budget + (however much you want to increase)")
+        #implementing the __add__ function here
+        print(f"Add more funds by using budget + (however much you want to "
+              f"increase by).")
         
     def buy_clothes(self):
-        """buys clothes from catalogue if whithin budget and not currently owned. 
+        """Buys clothes from catalogue if whithin budget and not currently owned. 
         CREDIT for conditional expression. 
         
         Args: 
