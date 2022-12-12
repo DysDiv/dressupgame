@@ -214,19 +214,19 @@ class Character:
             plot of budget over time
         """
 
-        clothes = pd.read_csv(file) 
+        clothes = pd.read_csv("clothes.csv") 
         time = 0 
         empty = []
         if self.buy_clothes:
             self.budget -= clothes[clothes["Clothing Name"].isin(self.wearing)][
                 "Cost"].sum()
             time +=1
-            empty.append(budget)
+            empty.append(self.budget)
         if self.sell_clothes:
             self.budget += clothes[clothes["Clothing Name"].isin(self.wearing)][
                 "Cost"].sum()
             time +=1
-            empty.append(budget)
+            empty.append(self.budget)
             
         clothes["Budget"] = pd.Series(empty)
         clothes["Time"] = pd.Series(time)
