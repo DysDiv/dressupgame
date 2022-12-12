@@ -206,7 +206,7 @@ class Character:
         self.budget = float(self.budget) + increase
         print(f"Your new budget is {self.budget}")
         
-    def visualize(budget, time):
+    def visualize(self, budget, time):
         """Plots budget over time using either seaborn or pyplot
         
         Args:
@@ -216,6 +216,23 @@ class Character:
         Side effects: 
             Prints the plot of budget over time.
         """
+        clothes = pd.read_csv("clothes.csv")  
+        empty = []
+        if self.buy_clothes:
+            budget -= clothes[clothes["Clothing Name"].isin(self.wearing)][
+                "Cost"].sum()
+            time +=1
+            empty.append(budget)
+        if self.sell_clothes:
+            budget += clothes[clothes["Clothing Name"].isin(self.wearing)][
+                "Cost"].sum()
+            time +=1
+            empty.append(budget)
+            
+        clothes["Budget"] = pd.Series(empty)
+        clothes["Time"] = pd.Series(time)
+        clothes.plot.bar(x = "Budget", y = "Time")
+        
         
     def judge(self):
         """Judges the user's score based on the clothing that they've worn.
