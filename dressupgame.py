@@ -6,6 +6,7 @@ logic checks, savestates, and much more."""
 from argparse import ArgumentParser
 import sys
 import pandas as pd
+import matplotlib.pyplot as plt
 from PIL import Image
 
 class Character:
@@ -232,9 +233,11 @@ class Character:
             time +=1
             empty.append(self.budget)
             
-        clothes["Budget"] = pd.Series(empty)
-        clothes["Time"] = pd.Series(time)
-        clothes.plot.bar(x = "Budget", y = "Time")
+            plt.bar (empty, empty, color ='pink')
+            plt.xlabel("Budget")
+            plt.ylabel("Time")
+            plt.title("Budget Over Time")
+            plt.show()
         
         
     def judge(self):
