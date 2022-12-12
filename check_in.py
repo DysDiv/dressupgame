@@ -66,7 +66,6 @@ class Character:
         Side effects:
             Redefines the contents worn by character and added it to self.closet
         
-        Technique used: f strings
         """
         if item in self.wearing:
             self.closet.append(item)
