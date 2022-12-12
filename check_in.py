@@ -154,12 +154,10 @@ class Character:
         #Take the index and add to closet, subtract cost from self.budget,
         #return to main menu
       
-    def sell_clothes(self, item, budget):
+    def sell_clothes(self):
         """sells clothes from closet if currently owned. 
         
-        Args: 
-        item (str): item from closet to be sold.
-        budget (float): monetary budget 
+        Args
         
         Side Effects: 
         alters attribute budget.
@@ -168,19 +166,42 @@ class Character:
         budget (float) after addition.
 
         Techniques Used:
-        List comprehension
         Sequence Unpacking
         """
+        catalogue = pd.read_csv("clothes.csv")
+        
+        itemindex = catalogue.sort_values([(f"{Index}: {Name} ${Cost}") 
+                    for Index, Name, Cost
+                    in zip(catalogue.index, catalogue["Clothing Name"],
+                                catalogue["Cost"])])
+        
+       
+        itemcost = int(catalogue["Cost"].loc[catalogue.index[itemindex]])
+        
+        for x in self.closet:
+            self.closet.append(f"This item will be sold at ${(itemcost) * 0.5}")
+        else:
+            print(f"Try selling something else") 
+        
+        itemindex = int(input("Which item are you interested in selling?")
+        + " \nType num: ")
+        
+        if x in self.closet:
+            self.closet.remove(x)
+            print(f"You have sold {self.x}. n\
+                You currently have ${self.budget +(itemcost) * 0.5 }.")
+        else:
+            pass
+            
         
         
-        display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
-        index, Clothing_Name, Category,Cost in zip(self.closet.index, 
-        self.closet['Clothing Name'],self.closet['Category'], )]) 
         
-        for line in display: 
-            print (line + "\n")
         
-        pass
+        
+        
+        
+        
+        
     
     def __add__(self, increase):
         """Adds more money in budget
