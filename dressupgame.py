@@ -243,10 +243,18 @@ class Character:
         Side effects:
             Prints to stdout.
         """
-        fashion_sum = self.wearing[self.wearing["Clothing Name"].isin(self.wearing)]
-        ["Fashion Score"].sum()
-        
-        if fashion_sum <= 5:
+        catalogue = pd.read_csv("clothes.csv")
+
+        fashion_sum = catalogue[catalogue["Clothing Name"].isin(self.wearing)]["Fashion Score"].sum()
+
+        if (("Blue Button Down" in self.wearing) and 
+        ("Classic Jeans" in self.wearing) and
+        ("Blue Tie" in self.wearing) and
+        ("Glasses" in self.wearing)):
+            im = Image.open(r"/Users/miamonique/Desktop/candi.png")
+            im.show()
+
+        elif fashion_sum <= 5:
             print(f"Loser, do better. \n Fashion Score: {fashion_sum}/25")
         elif fashion_sum >= 6 and fashion_sum <= 10:
             print(f"Getting There. \n Fashion Score: {fashion_sum}/25")
@@ -256,10 +264,6 @@ class Character:
             print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
         else: 
             print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
-        if self.wearing == ["Blue Button Down", "Classic Jeans","Blue Tie"
-        ,"Glasses"]:
-            im = Image.open(r"/Users/miamonique/Desktop/candi.png")
-            im.show()
        
 def main(catalogue_filepath):
     """Runs the program, reads in necessary information and offers choices for
