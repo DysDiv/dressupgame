@@ -105,7 +105,6 @@ class Character:
         F-Strings
         """
         print(f"You currently have ${self.budget}.")
-        #implementing the __add__ function here
         print("Add more funds by using budget + (however much you want to increase)")
         
     def buy_clothes(self):
