@@ -302,6 +302,12 @@ def main(catalogue_filepath):
         elif response == "JUDGE":
             player.judge()
             
+        elif response == "WEAR":
+            player.wear_clothes()
+        
+        elif response == "SELL":
+            player.sell_clothes()
+            
         elif response == "VISUALIZE":
             pass
         
