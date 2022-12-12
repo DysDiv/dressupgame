@@ -52,7 +52,7 @@ class Character:
         Techniques: 
             Conditional Expressions (Layla)
         """
-        item = input("\What item would you like to put on?: ")
+        item = input("What item would you like to put on?\n Enter (Case Sensitve): ")
 
 
         
