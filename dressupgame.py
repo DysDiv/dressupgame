@@ -38,7 +38,7 @@ class Character:
         self.closet = []
         self.wearing = []
     
-    def wear_clothes(self, item):
+    def wear_clothes(self):
         """Allows the user to wear clothes by moving clothes from `self.closet`
         to `self.wearing`, if the number of clothes doesn't exceed its max.
         
@@ -52,9 +52,11 @@ class Character:
         Techniques: 
             Conditional Expressions (Layla)
         """
-        if len(self.wearing) < 1:
-            print("YOU ARE NAKED")
-        elif len(self.wearing) > 5:
+        item = input("\What item would you like to put on?: ")
+
+
+        
+        if len(self.wearing) > 5:
             print(f"Hey, you're wearing too much! You gotta take something off.")
         elif item in self.closet:
             self.wearing.append(item)
@@ -172,7 +174,7 @@ class Character:
             clotheindex, clothename = clothe
             clothecost = (catalogue["Cost"].loc[catalogue.index[clotheindex]]) * 0.5
             counter += 1
-            print(f"{counter}: {clothename} {clothecost} ")
+            print(f"{counter}: {clothename} ${clothecost} ")
         
         itemindex = (int(input("What item would you like to sell? \n Enter Number:"))) -1
         if itemindex < 0 :
@@ -283,7 +285,7 @@ def main(catalogue_filepath):
         player = Character(player_name)
     catalogue = pd.read_csv(catalogue_filepath)
     
-    response = ("\n \n \n-----------------------------------------\n"
+    response = input("\n \n \n-----------------------------------------\n"
         "Please select a choice from the following options, or 'QUIT' to exit program:\n"
                     "'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
                     "'CLOSET' to view the items within your personal closet.\n"
@@ -298,8 +300,8 @@ def main(catalogue_filepath):
                     "'ADD' in order to see a category of clothes.\n"
                     "'SAVE' in order to save your current progress to a file.\n"
                     "'LOAD' in order to load your progress from a file.\n"
-                    "Enter KEYWORD in quotations: "
-                    "\n \n-----------------------------------------\n")
+                    "\n \n-----------------------------------------\n"
+                    "Enter KEYWORD: ")
     
     while response != "QUIT":
         
@@ -323,6 +325,7 @@ def main(catalogue_filepath):
             player.visualize()
             
         elif response ==  "WEARCLOTHES":
+            player.print_closet()
             player.wear_clothes()
             
         elif response ==  "SELL":
@@ -351,20 +354,23 @@ def main(catalogue_filepath):
         else:
             print(f"Sorry, that's not an option. Why don't you try again?")
         
-        response = input(str("Please select a choice from the following options, or 'QUIT' to exit program:\n"
-                    "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
-                    "Enter 'CLOSET' to view the items within your personal closet.\n"
-                    "Enter 'WEARING' to view the items that you are currently wearing.\n"
-                    "Enter 'BUDGET' to view your current budget.\n"
-                    "Enter 'JUDGE' in order to walk down the runway and judge your fashion!\n"
-                    "Enter 'VISUALIZE' in order to see your budget changes over time.\n"
-                    "Enter 'WEARCLOTHES' in order to put something on that you have!\n"
-                    "Enter 'TAKEOFF' in order to take clothing off.\n"
-                    "Enter 'SELL' in order to sell an article of clothing that you have.\n"
-                    "Enter 'BUY' in order to buy new clothing you don't have!\n"
-                    "Enter 'ADD' in order to see a category of clothes.\n"
-                    "Enter 'SAVE' in order to save your current progress to a file.\n"
-                    "Enter 'LOAD' in order to load your progress from a file."))            
+        response = input(str("\n \n \n-----------------------------------------\n"
+        "Please select a choice from the following options, or 'QUIT' to exit program:\n"
+                    "'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
+                    "'CLOSET' to view the items within your personal closet.\n"
+                    "'WEARING' to view the items that you are currently wearing.\n"
+                    "'BUDGET' to view your current budget.\n"
+                    "'JUDGE' in order to walk down the runway and judge your fashion!\n"
+                    "'VISUALIZE' in order to see your budget changes over time.\n"
+                    "'WEARCLOTHES' in order to put something on that you have!\n"
+                    "'TAKEOFF' in order to take clothing off.\n"
+                    "'SELL' in order to sell an article of clothing that you have.\n"
+                    "'BUY' in order to buy new clothing you don't have!\n"
+                    "'ADD' in order to see a category of clothes.\n"
+                    "'SAVE' in order to save your current progress to a file.\n"
+                    "'LOAD' in order to load your progress from a file.\n"
+                    "Enter KEYWORD in quotations: "
+                    "\n \n-----------------------------------------\n"))            
         
 def parse_args(arglist):
     """Parse command-line arguments
