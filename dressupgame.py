@@ -145,7 +145,7 @@ class Character:
         itemname = catalogue["Clothing Name"].iloc[int(itemindex)]
         if self.budget >= itemcost:
             self.budget -= itemcost
-            self.closet.append((int(itemindex), itemname)) #change if only want to put clothe title
+            self.closet.append((itemname)) #change if only want to put clothe title
             print(f"You purchased {itemname}!\n ")
             print("Your new purchase is available in your closet")
         else: 
@@ -165,16 +165,16 @@ class Character:
             alters attribute budget.
 
         Techniques:
-            Sequence Unpacking (Mia)
             F-string (Flavyne)
         """
         catalogue = pd.read_csv("clothes.csv")
         counter = 0
-        for clothe in self.closet: 
-            clotheindex, clothename = clothe
+        for clothe in self.closet:
+            clothename = clothe
+            clotheindex = catalogue.index[catalogue['Clothing Name'] == clothe].tolist()[0]
             clothecost = (catalogue["Cost"].loc[catalogue.index[clotheindex]]) * 0.5
             counter += 1
-            print(f"{counter}: {clothename} ${clothecost} ")
+            print(f"{counter}: {clothename} ${clothecost}")
         
         itemindex = (int(input("What item would you like to sell? \n Enter Number:"))) -1
         if itemindex < 0 :
@@ -186,14 +186,14 @@ class Character:
 
         itemcost = (catalogue["Cost"].loc[catalogue.index[itemindex]]) * 0.5
 
-        print(f"You sold your {self.closet[itemindex][1]}")
+        print(f"You sold your {self.closet[itemindex]}")
         self.budget += itemcost
         del self.closet [itemindex]
 
         print(f"Your current budget is now {self.budget}")
         print("Your closet has been updated: ")
         for item in self.closet:
-            print(item[1])
+            print(item)
    
     def __add__(self, increase):
         """Magic method that allows the user to add more to their budget.
@@ -256,8 +256,8 @@ class Character:
             print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
         else: 
             print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
-        if self.wearing == [(2, "Blue Button Down"),
-        (4, "Classic Jeans"),(7,  "Blue Tie"),(6, "Glasses")]:
+        if self.wearing == ["Blue Button Down", "Classic Jeans","Blue Tie"
+        ,"Glasses"]:
             im = Image.open(r"/Users/miamonique/Desktop/candi.png")
             im.show()
        
