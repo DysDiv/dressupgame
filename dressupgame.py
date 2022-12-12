@@ -319,6 +319,12 @@ def main(catalogue_filepath):
             
         elif response == "VISUALIZE":
             player.visualize()
+            
+        elif response ==  "WEARCLOTHES":
+            player.wear_clothes()
+            
+        elif response ==  "SELL":
+            player.sell_clothes()
         
         elif response == "BUY":
             player.buy_clothes()
