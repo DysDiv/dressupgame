@@ -32,8 +32,6 @@ class Character:
             
         Technique: Optional Parameter (William)
         """
-        #initalizes attributes
-        #sets player, budget, etc.
         self.name = name
         self.budget = budget
         self.closet = []
@@ -59,7 +57,6 @@ class Character:
             self.closet.remove(item)
         else:
             print(f"Looks like that's not something you can do.")
-    #wear clothes and removes it from closet
     
     def remove_clothes(self, item):
         """Removes an article of clothing currently worn.
@@ -78,7 +75,6 @@ class Character:
             self.wearing.remove(item)
         else:
             print(f"Looks like that's not something you can do.")
-    #removes clothes, puts it into closet
     
     def print_closet(self):
         """Displays the contents of the closet.
@@ -89,7 +85,6 @@ class Character:
         print(f"Here's what's in your closet. Take a look!")
         for item in self.closet:
             print(item)
-    #stores owned clothes
 
     def print_wearing(self):
         """Displays the clothes the user is wearing.
@@ -110,7 +105,6 @@ class Character:
         Techniques used: f-strings (Flavyne)
         """
         print(f"You currently have ${self.budget}.")
-        #implementing the __add__ function here
         print(f"Add more funds by using budget + (however much you want to "
               f"increase by).")
         
