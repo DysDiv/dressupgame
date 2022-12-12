@@ -320,7 +320,7 @@ def main(catalogue_filepath):
             player.judge()
             
         elif response == "VISUALIZE":
-            pass
+            player.visualize()
         
         elif response == "BUY":
             player.buy_clothes()
