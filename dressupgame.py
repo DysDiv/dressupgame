@@ -19,7 +19,7 @@ class Character:
         wearing (list of str): clothes that the player is currently wearing
     """
     
-    def __init__(self, name, budget = 100):
+    def __init__(self, name, budget):
         """Initializes the Character class object.
         
         Args:
@@ -52,7 +52,9 @@ class Character:
         Techniques: 
             Conditional Expressions (Layla)
         """
-        if len(self.wearing) > 5:
+        if len(self.wearing) < 1:
+            print("YOU ARE NAKED")
+        elif len(self.wearing) > 5:
             print(f"Hey, you're wearing too much! You gotta take something off.")
         elif item in self.closet:
             self.wearing.append(item)
@@ -214,19 +216,19 @@ class Character:
             plot of budget over time
         """
 
-        clothes = pd.read_csv(file) 
+        clothes = pd.read_csv("clothes.csv") 
         time = 0 
         empty = []
         if self.buy_clothes:
             self.budget -= clothes[clothes["Clothing Name"].isin(self.wearing)][
                 "Cost"].sum()
             time +=1
-            empty.append(budget)
+            empty.append(self.budget)
         if self.sell_clothes:
             self.budget += clothes[clothes["Clothing Name"].isin(self.wearing)][
                 "Cost"].sum()
             time +=1
-            empty.append(budget)
+            empty.append(self.budget)
             
         clothes["Budget"] = pd.Series(empty)
         clothes["Time"] = pd.Series(time)
@@ -274,7 +276,7 @@ def main(catalogue_filepath):
         With Statements (William)
     """
     player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
-    budget = float(input("Please choose your budget, or leave blank for default (100): "))
+    budget = float(input("Please choose your budget?: "))
     if budget != None:
         player = Character(player_name, budget)
     else:
