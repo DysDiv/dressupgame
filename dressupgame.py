@@ -206,28 +206,24 @@ class Character:
         self.budget = float(self.budget) + increase
         print(f"Your new budget is {self.budget}")
         
-    def visualize(self, budget, time):
-        """Plots budget over time using either seaborn or pyplot
+    def visualize(self):
+        """ 
+        Plots Budget over time using either seaborn or pyplot
         
-        Args:
-           budget (float): amount of money the player has left after spending
-           time (int): the length of the game running
-        
-        Side effects: 
-            Prints the plot of budget over time.
-
-        Techniques Used:
-            PyPlot (Anna)
+        Side Effects: 
+            plot of budget over time
         """
-        clothes = pd.read_csv("clothes.csv")  
+
+        clothes = pd.read_csv(file) 
+        time = 0 
         empty = []
         if self.buy_clothes:
-            budget -= clothes[clothes["Clothing Name"].isin(self.wearing)][
+            self.budget -= clothes[clothes["Clothing Name"].isin(self.wearing)][
                 "Cost"].sum()
             time +=1
             empty.append(budget)
         if self.sell_clothes:
-            budget += clothes[clothes["Clothing Name"].isin(self.wearing)][
+            self.budget += clothes[clothes["Clothing Name"].isin(self.wearing)][
                 "Cost"].sum()
             time +=1
             empty.append(budget)
