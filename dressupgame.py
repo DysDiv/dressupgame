@@ -142,7 +142,7 @@ class Character:
         itemname = catalogue["Clothing Name"].iloc[int(itemindex)]
         if self.budget >= itemcost:
             self.budget -= itemcost
-            self.closet.append(itemname) #change if only want to put clothe title
+            self.closet.append((int(itemindex), itemname)) #change if only want to put clothe title
             print(f"You purchased {itemname}!\n ")
             print("Your new purchase is available in your closet")
         else: 
@@ -151,7 +151,7 @@ class Character:
         #Take the index and add to closet, subtract cost from self.budget,
         #return to main menu
       
-    def sell_clothes(self, item):
+    def sell_clothes(self):
         """Allows the user to sell clothes from closet if currently owned and
         not wearing. 
         
@@ -162,34 +162,35 @@ class Character:
             alters attribute budget.
 
         Techniques:
-            List Comprehension (Layla)
             Sequence Unpacking (Mia)
+            F-string (Flavyne)
         """
         catalogue = pd.read_csv("clothes.csv")
+        counter = 0
+        for clothe in self.closet: 
+            clotheindex, clothename = clothe
+            clothecost = (catalogue["Cost"].loc[catalogue.index[clotheindex]]) * 0.5
+            counter += 1
+            print(f"{counter}: {clothename} {clothecost} ")
         
-        itemindex = catalogue.sort_values([(f"{Index}: {Name} ${Cost}") 
-                    for Index, Name, Cost
-                    in zip(catalogue.index, catalogue["Clothing Name"],
-                                catalogue["Cost"])])
-        
-       
-        itemcost = int(catalogue["Cost"].loc[catalogue.index[itemindex]])
-        
-        for x in self.closet:
-            self.closet.append(f"This item will be sold at ${(itemcost) * 0.5}")
-        else:
-            print(f"Try selling something else") 
-        
-        itemindex = int(input("Which item are you interested in selling?")
-        + " \nType num: ")
-        
-        if x in self.closet:
-            self.closet.remove(x)
-            print(f"You have sold {self.x}. n\
-                You currently have ${self.budget +(itemcost) * 0.5 }.")
+        itemindex = (int(input("What item would you like to sell? \n Enter Number:"))) -1
+        if itemindex < 0 :
+            print("Invalid Number")
+        elif itemindex > (len(self.closet)-1) :
+            print("Invalid Number")
         else:
             pass
-            
+
+        itemcost = (catalogue["Cost"].loc[catalogue.index[itemindex]]) * 0.5
+
+        print(f"You sold your {self.closet[itemindex][1]}")
+        self.budget += itemcost
+        del self.closet [itemindex]
+
+        print(f"Your current budget is now {self.budget}")
+        print("Your closet has been updated: ")
+        for item in self.closet:
+            print(item[1])
    
     def __add__(self, increase):
         """Magic method that allows the user to add more to their budget.
@@ -215,6 +216,9 @@ class Character:
         
         Side effects: 
             Prints the plot of budget over time.
+
+        Techniques Used:
+            PyPlot (Anna)
         """
         clothes = pd.read_csv("clothes.csv")  
         empty = []
@@ -253,7 +257,8 @@ class Character:
             print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
         else: 
             print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
-        if self.wearing == ["Blue Button Down", "Classic Jeans", "Blue Tie", "Glasses"]:
+        if self.wearing == [(2, "Blue Button Down"),
+        (4, "Classic Jeans"),(7,  "Blue Tie"),(6, "Glasses")]:
             im = Image.open(r"/Users/miamonique/Desktop/candi.png")
             im.show()
        
