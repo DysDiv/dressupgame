@@ -122,8 +122,8 @@ class Character:
         budget (float) after subtraction.
 
         Techniques Used:
-        List comprehension
-        Sequence Unpacking
+        List comprehension (Layla)
+        Sequence Unpacking (Mia)
         """
         catalogue = pd.read_csv("clothes.csv")
         
@@ -163,9 +163,6 @@ class Character:
         
         Returns: 
         budget (float) after addition.
-
-        Techniques Used:
-        Sequence Unpacking
         """
         catalogue = pd.read_csv("clothes.csv")
         
@@ -203,8 +200,8 @@ class Character:
             Prints text that acknoledges the change in
 
         Techniques Used:
-        Magic Expression
-        F Strings
+        Magic Method (Mia)
+        
         """
         self.budget = float(self.budget) + increase
         print(f"Your new budget is {self.budget}")
@@ -222,7 +219,9 @@ class Character:
             plot of budget over time
 
         Techniques Used:
-        F-string
+        Pyplot (Anna)
+        Pandas DataFrames (Anna)
+        
         """
     def judge(self):
         """Judges the user's score based on the clothing that they've worn.
@@ -260,8 +259,8 @@ def main(catalogue_filepath):
     """
     
     """Techniques used for this section:
-    - Optional Parameters
-    - Opening a file using with statements
+    - Optional Parameters (William)
+    - Opening a file using with statements (William)
     """
     player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
     budget = input(int("Please choose your budget, or leave blank for default (100): "))
@@ -362,7 +361,7 @@ def parse_args(arglist):
         namespace: the parsed argument as a namespace 
     
     Techniques used:
-    Parse args
+    Parse args (Mia)
     """
     parser = ArgumentParser()
     parser.add_argument("filepath", help = "filepath of clothes cataloge csv")
