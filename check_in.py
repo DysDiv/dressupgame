@@ -14,7 +14,7 @@ class Character:
      
      Attributes:  
         name (str): name of person
-        budget (int): the budget of the player. Defaults to 100
+        budget (float): the budget of the player. Defaults to 100
         closet (list of str): clothes purchased and not currently worn
         wearing (list of str): clothes that the player is currently wearing
     """
@@ -30,7 +30,8 @@ class Character:
             Defines the values of the attributes `name`, `budget`, `closet`, and
             `wearing`.
             
-        Technique: Optional Parameter (William)
+        Techniques: 
+            Optional Parameter (William)
         """
         self.name = name
         self.budget = budget
@@ -48,7 +49,8 @@ class Character:
             Alters the state of `self.closet` and `self.wearing`.
             Prints to stdout.
         
-        Technique: Conditional Expressions (Layla)
+        Techniques: 
+            Conditional Expressions (Layla)
         """
         if len(self.wearing) > 5:
             print(f"Hey, you're wearing too much! You gotta take something off.")
@@ -68,7 +70,8 @@ class Character:
             Alters the state of `self.closet` and `self.wearing`.
             Prints to stdout.
         
-        Technique: f-strings (Flavyne)
+        Techniques: 
+            f-strings (appears everywhere) (Flavyne)
         """
         if item in self.wearing:
             self.closet.append(item)
@@ -101,29 +104,25 @@ class Character:
         
         Side effects:
             Prints to stdout.
-        
-        Techniques used: f-strings (Flavyne)
         """
         print(f"You currently have ${self.budget}.")
         print(f"Add more funds by using budget + (however much you want to "
               f"increase by).")
         
     def buy_clothes(self):
-        """Buys clothes from catalogue if whithin budget and not currently owned. 
-        CREDIT for conditional expression. 
+        """Allows the user to buy clothes from catalogue if whithin budget and
+        not currently owned.
         
         Args: 
-        item (str): item from catalogue to be bought.
+            item (str): item from catalogue to be bought.
         
         Side Effects: 
-        alters attribute budget. 
-        
-        Returns: 
-        budget (float) after subtraction.
+            Alters attribute `self.budget`. 
 
-        Techniques Used:
-        List comprehension
-        Sequence Unpacking
+        Techniques:
+            List Comprehension (Layla)
+            Sequence Unpacking (Mia)
+            Conditional Expressions (Layla)
         """
         catalogue = pd.read_csv("clothes.csv")
         
@@ -133,7 +132,6 @@ class Character:
                     in zip(catalogue.index, catalogue["Clothing Name"],
                                 catalogue["Category"], catalogue["Cost"])])
 
-        
         for line in display: 
             print (line + "\n")
         
@@ -153,24 +151,20 @@ class Character:
         #Take the index and add to closet, subtract cost from self.budget,
         #return to main menu
       
-    def sell_clothes(self, item, budget):
-        """sells clothes from closet if currently owned. 
+    def sell_clothes(self, item):
+        """Allows the user to sell clothes from closet if currently owned and
+        not wearing. 
         
         Args: 
-        item (str): item from closet to be sold.
-        budget (float): monetary budget 
+            item (str): item from closet to be sold.
         
-        Side Effects: 
-        alters attribute budget.
-        
-        Returns: 
-        budget (float) after addition.
+        Side effects: 
+            alters attribute budget.
 
-        Techniques Used:
-        List comprehension
-        Sequence Unpacking
+        Techniques:
+            List Comprehension (Layla)
+            Sequence Unpacking (Mia)
         """
-        
         
         display = ([(f"{index}: name: {Clothing_Name}, category: {Category}, ${Cost}") for 
         index, Clothing_Name, Category,Cost in zip(self.closet.index, 
@@ -182,36 +176,36 @@ class Character:
         pass
     
     def __add__(self, increase):
-        """Adds more money in budget
+        """Magic method that allows the user to add more to their budget.
         
+        Args:
+            increase (int): the number the budget will be increased by.
         Side Effects: 
-            Redefines the value of self.budget
-            Prints text that acknoledges the change in
+            Redefines the value of `self.budget`
+            Prints to stdout.
 
         Techniques Used:
-        Magic Expression
-        F Strings
+            Magic Methods (Mia)
         """
         self.budget = float(self.budget) + increase
         print(f"Your new budget is {self.budget}")
         
-    
     def visualize(budget, time):
-        """ 
-        Plots Budget over time using either seaborn or pyplot
+        """Plots budget over time using either seaborn or pyplot
         
         Args:
            budget (float): amount of money the player has left after spending
            time (int): the length of the game running
         
-        Returns: 
-            plot of budget over time
-
-        Techniques Used:
-        F-string
+        Side effects: 
+            Prints the plot of budget over time.
         """
+        
     def judge(self):
         """Judges the user's score based on the clothing that they've worn.
+        
+        Side effects:
+            Prints to stdout.
         """
         fashion_sum = self.wearing[self.wearing["Clothing Name"].isin(self.wearing)]
         ["Fashion Score"].sum()
@@ -230,10 +224,9 @@ class Character:
             im = Image.open(r"/Users/miamonique/Desktop/candi.png")
             im.show()
        
-    
 def main(catalogue_filepath):
     """Runs the program, reads in necessary information and offers choices for
-    the player.
+    the player using a while loop with key 'QUIT'.
     
     Args:
         catalogue_filepath (str): the filepath of a .csv file containing
@@ -243,11 +236,9 @@ def main(catalogue_filepath):
         Prints to standard output. Simulates an interactive application through 
         the usage of the "while" statement. Allows users to call different
         methods using keywords.
-    """
-    
-    """Techniques used for this section:
-    - Optional Parameters
-    - Opening a file using with statements
+
+    Techniques:
+        With Statements (William)
     """
     player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
     budget = input(int("Please choose your budget, or leave blank for default (100): "))
@@ -256,6 +247,7 @@ def main(catalogue_filepath):
     else:
         player = Character(player_name)
     catalogue = pd.read_csv(catalogue_filepath)
+    
     response = ("Please select a choice from the following options, or 'QUIT' to exit program:\n"
                     "Enter 'CATALOGUE' to view the options currently avaliable in our catalogue.\n"
                     "Enter 'CLOSET' to view the items within your personal closet.\n"
@@ -270,6 +262,7 @@ def main(catalogue_filepath):
                     "Enter 'ADD' in order to see a category of clothes.\n"
                     "Enter 'SAVE' in order to save your current progress to a file.\n"
                     "Enter 'LOAD' in order to load your progress from a file.")
+    
     while response != "QUIT":
         
         if response == "CATALOGUE":
@@ -299,7 +292,7 @@ def main(catalogue_filepath):
             with open(filepath, "r", encoding = "UTF-8") as f:
                 lines = f.read().splitlines()
             player.name = lines[0]
-            player.budget = int(lines[1])
+            player.budget = float(lines[1])
             player.closet = lines[2].split(",")
             player.wearing = lines[3].split(",")
             
@@ -307,7 +300,7 @@ def main(catalogue_filepath):
             filename = input(str("What is the name of the file you'd like the save data to be called? "))
             with open (filename, "w", encoding = "UTF-8") as f:
                 f.write(f"{player.name}\n")
-                f.write(f"{player.budget}]n")
+                f.write(f"{player.budget}\n")
                 f.write(f"{','.join(player.closet)}\n")
                 f.write(f"{','.join(player.wearing)}")    
         
@@ -329,11 +322,9 @@ def main(catalogue_filepath):
                     "Enter 'SAVE' in order to save your current progress to a file.\n"
                     "Enter 'LOAD' in order to load your progress from a file."))            
         
-
 def parse_args(arglist):
-    """ Parse command-line arguments
-
-    Expect one mandatory argument, the path to the file of clothings
+    """Parse command-line arguments
+    Expecting one mandatory argument, the path to the catalogue file
 
     Args:
         arglist (list of str): command-line arguments; path to clothes csv
@@ -341,8 +332,8 @@ def parse_args(arglist):
     Returns:
         namespace: the parsed argument as a namespace 
     
-    Techniques used:
-    Parse args
+    Techniques:
+        Parse args (Mia)
     """
     parser = ArgumentParser()
     parser.add_argument("filepath", help = "filepath of clothes cataloge csv")
@@ -355,7 +346,8 @@ if __name__ == "__main__":
 
     
     
-"""Here's the list of the techniques we want to showcase
+"""
+List of the techniques showcased
 
 - conditional expressions - Layla
 - optional parameters and/or use of keyword arguments - William
