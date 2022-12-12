@@ -45,6 +45,8 @@ class Character:
             
         Side effects:
             alters the state of self.closet and self.wearing
+        
+        Technique used: conditional expressions
         """
         if len(self.wearing) > 5:
             print(f"Hey, you're wearing too much! You gotta take something off.")
@@ -63,6 +65,8 @@ class Character:
 
         Side effects:
             Redefines the contents worn by character and added it to self.closet
+        
+        Technique used: f strings
         """
         if item in self.wearing:
             self.closet.append(item)
