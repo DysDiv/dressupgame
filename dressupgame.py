@@ -135,8 +135,7 @@ class Character:
         for line in display: 
             print (line + "\n")
         
-        itemindex = int(input("Which item are you interested in purchasing?")
-        + " \nType num: ")
+        itemindex = int(input("Which item are you interested in purchasing? \n Type Num: "))
 
         itemcost = int(catalogue["Cost"].loc[catalogue.index[itemindex]])
         itemname = catalogue["Clothing Name"].iloc[int(itemindex)]
@@ -279,8 +278,8 @@ def main(catalogue_filepath):
         With Statements (William)
     """
     player_name = input(str("Welcome to the dress up game simulator! Please enter your name: "))
-    budget = input(int("Please choose your budget, or leave blank for default (100): "))
-    if budget != "":
+    budget = float(input("Please choose your budget, or leave blank for default (100): "))
+    if budget != None:
         player = Character(player_name, budget)
     else:
         player = Character(player_name)
