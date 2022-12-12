@@ -190,16 +190,7 @@ class Character:
         else:
             pass
             
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
+   
     def __add__(self, increase):
         """Magic method that allows the user to add more to their budget.
         
