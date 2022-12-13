@@ -169,7 +169,10 @@ class Character:
 
         Techniques:
             F-string (Flavyne)
+            Sorted with lambda (Flavyne)
         """
+        self.closet = sorted(self.closet, key = lambda x:x)
+
         catalogue = pd.read_csv("clothes.csv")
         counter = 0
         for clothe in self.closet:
@@ -198,37 +201,7 @@ class Character:
         print("Your closet has been updated: ")
         for item in self.closet:
             print(item)
-            
-    def budget(self):
-        """Adds loan money to player's budget
-        
-        Side Effects: 
-        alters self.budget
-        
-        prints:
-        new budget
-        
-        """
-        self.print_budget()
-        loan = int(input("take a loan: press 0 for no, enter amount for yes"))
-        self.budget+=loan
-        self.print_budget
     
-   
-    def __add__(self, increase):
-        """Magic method that allows the user to add more to their budget.
-        
-        Args:
-            increase (int): the number the budget will be increased by.
-        Side Effects: 
-            Redefines the value of `self.budget`
-            Prints to stdout.
-
-        Techniques Used:
-            Magic Methods (Mia)
-        """
-        self.budget = float(self.budget) + increase
-        print(f"Your new budget is {self.budget}")
         
     def visualize(self):
         """ 
@@ -255,6 +228,9 @@ class Character:
         
         Side effects:
             Prints to stdout.
+
+        Techniques:
+        f-string (Flavyne)
         """
         catalogue = pd.read_csv("clothes.csv")
 
@@ -423,7 +399,6 @@ List of the techniques showcased
 - Sequence unpacking - Mia
 - Custom list sorting with a key funciton - Flavyne
 - comprehensions or generator expressions - Layla
-- magic methods other than __init__() - Mia
 - concatenating, merging, filtering, or performing groupby operations on Pandas DataFrames - Anna
 - visualizing data with pyplot or seaborn - Anna
 """
