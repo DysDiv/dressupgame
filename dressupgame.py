@@ -215,34 +215,42 @@ class Character:
         
         Side Effects: 
             plot of budget over time
+            
+        Techniques Used:
+            pyplot (Anna)
         """
 
         clothes = pd.read_csv("clothes.csv") 
         time = 0 
-        empty = []
-        if self.buy_clothes:
-            self.budget -= clothes[clothes["Clothing Name"].isin(self.wearing)][
-                "Cost"].sum()
+        b = []
+        t = []
+        if self.buy_clothes():
+            self.budget -= clothes[clothes["Clothing Name"].isin(self.wearing)]["Cost"].sum()
             time +=1
-            empty.append(self.budget)
-        if self.sell_clothes:
-            self.budget += clothes[clothes["Clothing Name"].isin(self.wearing)][
-                "Cost"].sum()
+            b.append(self.budget)
+            t.append(time)
+        if self.sell_clothes():
+            self.budget += clothes[clothes["Clothing Name"].isin(self.wearing)]["Cost"].sum()
             time +=1
-            empty.append(self.budget)
-            
-            plt.bar (empty, empty, color ='pink')
+            b.append(self.budget)
+            t.append(time)
+        
+            plt.bar (b, t, color ='pink')
             plt.xlabel("Budget")
             plt.ylabel("Time")
             plt.title("Budget Over Time")
             plt.show()
+            
+            
         
         
     def judge(self):
-        """Judges the user's score based on the clothing that they've worn.
+        """Judges the user's score based on the clothing that they've worn and gives the max
         
         Side effects:
             Prints to stdout.
+        Techniques Used:
+            pandas (Anna)
         """
         catalogue = pd.read_csv("clothes.csv")
 
@@ -265,6 +273,9 @@ class Character:
             print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
         else: 
             print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
+        maximum = catalogue.groupby("Clothing Name").isin(self.wearing)]["Fashion Score"].max()
+        minimum = catalogue.groupby("Clothing Name").isin(self.wearing)]["Fashion Score"].min()
+        
        
 def main(catalogue_filepath):
     """Runs the program, reads in necessary information and offers choices for
