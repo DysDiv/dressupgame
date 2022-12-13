@@ -20,7 +20,7 @@ class Character:
         wearing (list of str): clothes that the player is currently wearing
     """
     
-    def __init__(self, name, budget):
+    def __init__(self, name, budget = 100):
         """Initializes the Character class object.
         
         Args:
@@ -38,6 +38,7 @@ class Character:
         self.budget = budget
         self.closet = []
         self.wearing = []
+        self.bot = [] #budget over time
     
     def wear_clothes(self):
         """Allows the user to wear clothes by moving clothes from `self.closet`
@@ -65,8 +66,11 @@ class Character:
         else:
             print(f"Looks like that's not something you can do.")
     
-    def remove_clothes(self):
+    def remove_clothes(self, item):
         """Removes an article of clothing currently worn.
+
+        Args:
+            item(str): The article of clothing the user wants to remove
 
         Side effects:
             Alters the state of `self.closet` and `self.wearing`.
@@ -75,7 +79,6 @@ class Character:
         Techniques: 
             f-strings (appears everywhere) (Flavyne)
         """
-        item = input(str("Which item are you trying to take off? "))
         if item in self.wearing:
             self.closet.append(item)
             self.wearing.remove(item)
@@ -144,6 +147,7 @@ class Character:
         itemname = catalogue["Clothing Name"].iloc[int(itemindex)]
         if self.budget >= itemcost:
             self.budget -= itemcost
+            self.bot.append(self.budget)
             self.closet.append((itemname)) #change if only want to put clothe title
             print(f"You purchased {itemname}!\n ")
             print("Your new purchase is available in your closet")
@@ -187,6 +191,7 @@ class Character:
 
         print(f"You sold your {self.closet[itemindex]}")
         self.budget += itemcost
+        self.bot.append(self.budget)
         del self.closet [itemindex]
 
         print(f"Your current budget is now {self.budget}")
@@ -215,42 +220,25 @@ class Character:
         
         Side Effects: 
             plot of budget over time
-            
-        Techniques Used:
+        
+        Techniques:
             pyplot (Anna)
         """
 
         clothes = pd.read_csv("clothes.csv") 
-        time = 0 
-        b = []
-        t = []
-        if self.buy_clothes():
-            self.budget -= clothes[clothes["Clothing Name"].isin(self.wearing)]["Cost"].sum()
-            time +=1
-            b.append(self.budget)
-            t.append(time)
-        if self.sell_clothes():
-            self.budget += clothes[clothes["Clothing Name"].isin(self.wearing)]["Cost"].sum()
-            time +=1
-            b.append(self.budget)
-            t.append(time)
-        
-            plt.bar (b, t, color ='pink')
-            plt.xlabel("Budget")
-            plt.ylabel("Time")
-            plt.title("Budget Over Time")
-            plt.show()
-            
+        plt.plot(self.bot, color ='pink')
+        plt.xlabel("Time")
+        plt.ylabel("Budget")
+        plt.title("Budget Over Time")
+        plt.show()
             
         
         
     def judge(self):
-        """Judges the user's score based on the clothing that they've worn and gives the max
+        """Judges the user's score based on the clothing that they've worn.
         
         Side effects:
             Prints to stdout.
-        Techniques Used:
-            pandas (Anna)
         """
         catalogue = pd.read_csv("clothes.csv")
 
@@ -273,9 +261,7 @@ class Character:
             print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
         else: 
             print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
-        maximum = catalogue.groupby("Clothing Name").isin(self.wearing)]["Fashion Score"].max()
-        minimum = catalogue.groupby("Clothing Name").isin(self.wearing)]["Fashion Score"].min()
-        
+    
        
 def main(catalogue_filepath):
     """Runs the program, reads in necessary information and offers choices for
@@ -340,13 +326,9 @@ def main(catalogue_filepath):
         elif response == "VISUALIZE":
             player.visualize()
             
-        elif response == "WEARCLOTHES":
+        elif response ==  "WEARCLOTHES":
             player.print_closet()
             player.wear_clothes()
-        
-        elif response == "TAKEOFF":
-            player.print_wearing()
-            player.remove_clothes()
             
         elif response ==  "SELL":
             player.sell_clothes()
