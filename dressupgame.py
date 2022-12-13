@@ -65,7 +65,7 @@ class Character:
         else:
             print(f"Looks like that's not something you can do.")
     
-    def remove_clothes(self, item):
+    def remove_clothes(self):
         """Removes an article of clothing currently worn.
 
         Args:
@@ -78,6 +78,7 @@ class Character:
         Techniques: 
             f-strings (appears everywhere) (Flavyne)
         """
+        item = input(str("Which item are you trying to take off?"))
         if item in self.wearing:
             self.closet.append(item)
             self.wearing.remove(item)
