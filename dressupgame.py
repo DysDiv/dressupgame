@@ -198,6 +198,22 @@ class Character:
         print("Your closet has been updated: ")
         for item in self.closet:
             print(item)
+            
+    def budget(self):
+        """Adds loan money to player's budget
+        
+        Side Effects: 
+        alters self.budget
+        
+        prints:
+        new budget
+        
+        """
+        self.print_budget()
+        loan = int(input("take a loan: press 0 for no, enter amount for yes"))
+        self.budget+=loan
+        self.print_budget
+    
    
     def __add__(self, increase):
         """Magic method that allows the user to add more to their budget.
@@ -319,7 +335,7 @@ def main(catalogue_filepath):
             
         elif response == "BUDGET":
             player.print_budget()
-            
+
         elif response == "JUDGE":
             player.judge()
             
