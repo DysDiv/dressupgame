@@ -68,9 +68,6 @@ class Character:
     def remove_clothes(self):
         """Removes an article of clothing currently worn.
 
-        Args:
-            item(str): The article of clothing the user wants to remove
-
         Side effects:
             Alters the state of `self.closet` and `self.wearing`.
             Prints to stdout.
@@ -78,7 +75,7 @@ class Character:
         Techniques: 
             f-strings (appears everywhere) (Flavyne)
         """
-        item = input(str("Which item are you trying to take off?"))
+        item = input(str("Which item are you trying to take off? "))
         if item in self.wearing:
             self.closet.append(item)
             self.wearing.remove(item)
@@ -332,9 +329,13 @@ def main(catalogue_filepath):
         elif response == "VISUALIZE":
             player.visualize()
             
-        elif response ==  "WEARCLOTHES":
+        elif response == "WEARCLOTHES":
             player.print_closet()
             player.wear_clothes()
+        
+        elif response == "TAKEOFF":
+            player.print_wearing()
+            player.remove_clothes()
             
         elif response ==  "SELL":
             player.sell_clothes()
