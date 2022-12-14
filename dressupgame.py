@@ -224,18 +224,23 @@ class Character:
         
         
     def judge(self):
-        """Judges the user's score based on the clothing that they've worn.
+        """Judges the user's score based on the clothing that they've worn and what items have the max fashion score
         
         Side effects:
             Prints to stdout.
 
         Techniques:
         f-string (Flavyne)
+        pandas boolean filtering (Anna)
         """
         catalogue = pd.read_csv("clothes.csv")
 
         fashion_sum = catalogue[catalogue["Clothing Name"].isin(self.wearing)]["Fashion Score"].sum()
-
+        fashion_max = catalogue[catalogue["Clothing Name"].isin(self.wearing)]["Fashion Score"].max()
+        catalogue["Wearing"] = pd.Series(self.wearing)
+        c = catalogue.iloc[len(self.wearing)::, :].fillna
+        b = catalogue[catalogue["Fashion Score"] == fashion_max][["Wearing"]]
+        
         if (("Blue Button Down" in self.wearing) and 
         ("Classic Jeans" in self.wearing) and
         ("Blue Tie" in self.wearing) and
@@ -244,15 +249,15 @@ class Character:
             im.show()
 
         elif fashion_sum <= 5:
-            print(f"Loser, do better. \n Fashion Score: {fashion_sum}/25")
+            print(f"Loser, do better. \n Fashion Score: {fashion_sum}/25 \n \n Clothes with Max Fashion Score: \n{b}")
         elif fashion_sum >= 6 and fashion_sum <= 10:
-            print(f"Getting There. \n Fashion Score: {fashion_sum}/25")
+            print(f"Getting There. \n Fashion Score: {fashion_sum}/25 \n \n Clothes with Max Fashion Score: \n {b}")
         elif fashion_sum >= 11 and fashion_sum <= 15:
-            print(f"So Close... \n Fashion Score: {fashion_sum}/25")  
+            print(f"So Close... \n Fashion Score: {fashion_sum}/25 \n \n Clothes with Max Fashion Score: \n{b}")  
         elif fashion_sum >= 16 and fashion_sum <= 20:
-            print(f"Great Job! \n Fashion Score: {fashion_sum}/25")
+            print(f"Great Job! \n Fashion Score: {fashion_sum}/25 \n \n Clothes with Max Fashion Score: \n{b}")
         else: 
-            print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25")
+            print(f"Perfect Score!!! \n Fashion Score: {fashion_sum}/25 \n \n Clothes with Max Fashion Score: \n{b}")
     
        
 def main(catalogue_filepath):
